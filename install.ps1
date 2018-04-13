@@ -8,6 +8,8 @@ if (!(Get-Command "python2.exe" -ErrorAction SilentlyContinue)) {
     Write-Output "make sure python2.exe exists in PATH"
 }
 
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
 md ~\vimfiles\autoload
 $uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 (New-Object Net.WebClient).DownloadFile(
