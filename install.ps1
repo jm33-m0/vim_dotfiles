@@ -1,10 +1,10 @@
 Write-Output "Installing vim-plug"
 
-if !((Get-Command "go.exe" -ErrorAction SilentlyContinue)) {
+if (!(Get-Command "go.exe" -ErrorAction SilentlyContinue)) {
     Write-Output "make sure go.exe exists in PATH"
 }
 
-if !((Get-Command "python2.exe" -ErrorAction SilentlyContinue)) {
+if (!(Get-Command "python2.exe" -ErrorAction SilentlyContinue)) {
     Write-Output "make sure python2.exe exists in PATH"
 }
 
