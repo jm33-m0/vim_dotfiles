@@ -10,7 +10,7 @@ call plug#begin('~/.vim/bundle')
 
 " General dev
 Plug 'w0rp/ale' " general linter
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer' } " general completer
+Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer --go-completer' } " general completer
 " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " file explorer
@@ -35,6 +35,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
+" Plug 'lambdalisue/vim-fullscreen'
 
 call plug#end()
 filetype plugin indent on    " required
@@ -187,9 +188,15 @@ nnoremap ^ <nop>
 syntax enable
 syntax on
 
+try
+    colorscheme molokai
+catch
+    colorscheme default
+endtry
+
 if has("gui_running")
     " Set a nicer font.
-    set guifont=SourceCodePro\ NF:h10:cDEFAULT
+    set guifont=Source\ Code\ Pro\ for\ Powerline:h10:cDEFAULT
     " Set window size
     set lines=36
     set columns=136
@@ -209,9 +216,6 @@ let base16colorspace=256
 if (has("termguicolors"))
     set termguicolors
 endif
-
-colorscheme molokai
-
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -290,7 +294,7 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
 " Hail Py3
-let g:ycm_python_binary_path = 'python3'
+" let g:ycm_python_binary_path = 'python3'
 
 
 " ALE linters
@@ -328,6 +332,33 @@ let airline#extensions#c_like_langs = ['c', 'cpp', 'cuda', 'go', 'javascript', '
 au bufenter *.c :silent! call airline#extensions#whitespace#disable()
 au bufenter *.ino :silent! call airline#extensions#whitespace#disable()
 au bufenter *.md :silent! call airline#extensions#whitespace#disable()
+
+" symbols and fonts
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.spell = 's'
+let g:airline_symbols.notexists = '🗴'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = ''
 
 " vim-go
 " since we have ALE enabled, vim-go doesn't have to run lint here
@@ -367,7 +398,7 @@ map <C-z> :NERDTreeToggle<CR>
 " kill buffer
 nmap <leader>k :bdelete<CR>
 " Switch to next buffer
-nmap <leader>b :bn<CR>
+nmap <leader>l :bn<CR>
 "map <F5> :SyntasticCheck<CR>
 
 " How can I close vim if the only window left open is a NERDTree?
