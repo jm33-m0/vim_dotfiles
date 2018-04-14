@@ -415,4 +415,5 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " vim-autoformat
 au BufWrite * :silent Autoformat
+let g:autoformat_autoindent = 0
 " :silent! execute !autopep8 --in-place --aggressive --aggressive %" | redraw!
