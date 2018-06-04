@@ -10,7 +10,7 @@ call plug#begin('~/.vim/bundle')
 
 " General dev
 Plug 'w0rp/ale' " general linter
-Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer --go-completer' } " general completer
+Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --clang-completer --go-completer' } " general completer
 " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " file explorer
