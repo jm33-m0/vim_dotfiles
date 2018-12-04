@@ -11,7 +11,7 @@ call plug#begin('~/.vim/bundle')
 " General dev
 Plug 'w0rp/ale' " general linter
 Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --clang-completer --go-completer' } " general completer
-" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " file explorer
 Plug 'jiangmiao/auto-pairs'
@@ -29,6 +29,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries'}
 Plug 'PProvost/vim-ps1'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 " Appearance
 Plug 'flazz/vim-colorschemes'
@@ -62,7 +63,7 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 " Quit without saving
-nmap <leader>q :q!<cr>
+nmap <leader>q :q<cr>
 " Save and quit
 nmap <leader>x :wq<cr>
 " Startify
@@ -188,8 +189,13 @@ nnoremap ^ <nop>
 syntax enable
 syntax on
 
+" let g:rehash256 = 1
+" let g:molokai_original = 1
+" set background=dark
+" set t_Co=256
+
 try
-    colorscheme molokai
+    colorscheme molokai_dark
 catch
     colorscheme default
 endtry
@@ -207,10 +213,6 @@ if has("gui_running")
     set guioptions-=L  "remove left-hand scroll bar
 endif
 
-let g:rehash256 = 1
-let g:molokai_original = 1
-set background=dark
-set t_Co=256
 
 let base16colorspace=256
 if (has("termguicolors"))
@@ -285,7 +287,9 @@ set cmdheight=1
 """"""""""""""""""""""""""""""
 
 " YCM conf
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+" Apply YCM FixIt
+map <F9> :YcmCompleter FixIt<CR>
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -296,6 +300,19 @@ let g:ycm_add_preview_to_completeopt = 0
 " Hail Py3
 " let g:ycm_python_binary_path = 'python3'
 
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar': 1,
+      \ 'qf': 1,
+      \ 'notes': 1,
+      \ 'markdown': 1,
+      \ 'unite': 1,
+      \ 'text': 1,
+      \ 'vimwiki': 1,
+      \ 'pandoc': 1,
+      \ 'infolog': 1,
+      \ 'mail': 1
+      \}
+
 
 " ALE linters
 let g:airline#extensions#ale#enabled = 1
@@ -303,10 +320,12 @@ let g:ale_lint_delay = 500
 let g:ale_open_list = 0
 let g:ale_set_loclist = 0
 let g:ale_lint_on_enter = 1
+let g:ale_rust_rls_toolchain = 'stable'
 
 let g:ale_linters = {
             \   'javascript': ['eslint'],
-            \   'c': ['clang'],
+            \   'c': [''],
+            \   'rust': ['rls'],
             \   'python': ['pylint'],
             \   'cpp': ['clang'],
             \   'go': ['golint'],
@@ -321,7 +340,8 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 
 " Vim-Airline Configuration
-let g:airline_theme = 'molokai'
+" let g:airline_theme = 'molokai'
+let g:airline_theme = 'dark'
 let g:airline#extensions#tabline#enabled = 1
 let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 1
