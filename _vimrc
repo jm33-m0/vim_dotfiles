@@ -189,10 +189,10 @@ nnoremap ^ <nop>
 syntax enable
 syntax on
 
-" let g:rehash256 = 1
-" let g:molokai_original = 1
-" set background=dark
-" set t_Co=256
+let g:rehash256 = 1
+let g:molokai_original = 1
+set background=dark
+set t_Co=256
 
 try
     colorscheme molokai_dark
@@ -329,7 +329,7 @@ let g:ale_linters = {
             \   'rust': ['rls'],
             \   'python': ['pylint'],
             \   'cpp': ['clang'],
-            \   'go': ['golint'],
+            \   'go': ['gometalinter'],
             \}
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -383,7 +383,7 @@ let g:airline_symbols.maxlinenr = ''
 
 " vim-go
 " since we have ALE enabled, vim-go doesn't have to run lint here
-"let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+" let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 let g:go_gocode_autobuild = 1
 let g:go_gocode_unimported_packages = 1
 let g:go_highlight_operators = 1
