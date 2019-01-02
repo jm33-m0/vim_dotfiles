@@ -165,7 +165,11 @@ set foldmethod=syntax
 
 " copy and paste
 nnoremap Y "+y
-set clipboard=unnamedplus
+if has('win32')
+    set clipboard=unnamed
+else
+    set clipboard=unnamedplus
+endif
 
 " space open/closes folds
 nnoremap <space> za
