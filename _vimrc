@@ -50,9 +50,6 @@ set autoread
 "Dismiss the start screen
 set shortmess=atI
 
-"Hightlight current line and column
-"set cursorline
-"set cursorcolumn
 " Enable Elite mode, No ARRRROWWS!!!!
 let g:elite_mode = 1
 " With a map leader it's possible to do extra key combinations
@@ -87,6 +84,15 @@ command T %s/\s\+$//e
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" kill buffer
+nmap <leader>k :bdelete<CR>
+" Switch to next buffer
+nmap <leader>l :bn<CR>
+nmap <leader>n :enew <CR>
+nmap <leader>_ :new <CR>
+nmap <leader>- :vnew <CR>
+
 " set nu
 set number relativenumber
 " set nonumber norelativenumber  " turn hybrid line numbers off
@@ -110,9 +116,11 @@ endif
 
 "Always show current position
 set ruler
+set cursorcolumn
+set cursorline
 
 " Height of the command bar
-" set cmdheight=1
+set cmdheight=1
 
 " A buffer becomes hidden when it is abandoned
 set hid
@@ -121,10 +129,6 @@ set hid
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
-" In many terminal emulators the mouse works just fine, thus enable it.
-"if has('mouse')
-"  set mouse=a
-"endif
 
 " Ignore case when searching
 set ignorecase
@@ -206,6 +210,11 @@ catch
 endtry
 
 if has("gui_running")
+    " In many terminal emulators the mouse works just fine, thus enable it.
+    if has('mouse')
+        set mouse=a
+    endif
+
     " Set a nicer font.
     set guifont=Source\ Code\ Pro\ for\ Powerline:h10:cDEFAULT
     " Set window size
@@ -225,7 +234,9 @@ if (has("termguicolors"))
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
+" and separator
 set encoding=utf8
+set fillchars=vert:│
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
@@ -239,10 +250,10 @@ highlight clear SpellRare
 highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
-highlight Pmenu ctermfg=7 ctermbg=234 guibg=#d0d0d0 guifg=#8a8a8a
-highlight Search cterm=NONE ctermfg=grey ctermbg=black guibg=#2a241a guifg=#8a8a8a
-"highlight CursorColumn ctermbg=234 guibg=#d0d0d0
-"highlight CursorLine ctermbg=234 guibg=#d0d0d0
+" highlight Pmenu ctermfg=7 ctermbg=234 guibg=#d0d0d0 guifg=#8a8a8a
+" highlight Search cterm=NONE ctermfg=grey ctermbg=black guibg=#2a241a guifg=#8a8a8a
+" highlight CursorColumn ctermbg=234 guibg=#d0d0d0
+" highlight CursorLine ctermbg=234 guibg=#d0d0d0
 
 
 
@@ -274,7 +285,7 @@ set tabstop=4
 "set tw=80
 set ai "Auto indent
 set si "Smart indent
-"set wrap "Wrap lines
+set wrap "Wrap lines
 
 
 
@@ -421,11 +432,6 @@ nmap <C-b> :TagbarToggle<CR>
 " Toggle NerdTREE
 map <C-z> :NERDTreeToggle<CR>
 
-" kill buffer
-nmap <leader>k :bdelete<CR>
-" Switch to next buffer
-nmap <leader>l :bn<CR>
-"map <F5> :SyntasticCheck<CR>
 
 " How can I close vim if the only window left open is a NERDTree?
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
