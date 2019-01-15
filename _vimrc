@@ -10,7 +10,7 @@ call plug#begin('~/.vim/bundle')
 
 " General dev
 Plug 'w0rp/ale' " general linter
-Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer' } " general completer
+Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --clang-completer --go-completer' } " general completer
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " file explorer
@@ -303,7 +303,6 @@ set cmdheight=1
 """"""""""""""""""""""""""""""
 
 " YCM conf
-" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
 " Apply YCM FixIt
 map <F9> :YcmCompleter FixIt<CR>
 map <F7> :YcmCompleter GoToDefinition<CR>
@@ -314,21 +313,21 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 "let g:ycm_autoclose_preview_window_after_insertion = 1
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
-" Hail Py3
-" let g:ycm_python_binary_path = 'python3'
+
 
 let g:ycm_filetype_blacklist = {
-      \ 'tagbar': 1,
-      \ 'qf': 1,
-      \ 'notes': 1,
-      \ 'markdown': 1,
-      \ 'unite': 1,
-      \ 'text': 1,
-      \ 'vimwiki': 1,
-      \ 'pandoc': 1,
-      \ 'infolog': 1,
-      \ 'mail': 1
-      \}
+            \ 'tagbar': 1,
+            \ 'python': 1,
+            \ 'qf': 1,
+            \ 'notes': 1,
+            \ 'markdown': 1,
+            \ 'unite': 1,
+            \ 'text': 1,
+            \ 'vimwiki': 1,
+            \ 'pandoc': 1,
+            \ 'infolog': 1,
+            \ 'mail': 1
+            \}
 
 
 " ALE linters
@@ -354,6 +353,25 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " let g:ale_lint_on_text_changed = 'normal'
 " let g:ale_set_quickfix = 1
 " let g:ale_keep_list_window_open = 1
+
+" Handle both python2 and python3
+" requires your pylint2 executable to be named `pylint_2`
+function Switch_To_PyX(py_name)
+    if a:py_name == "py2"
+        let g:ycm_python_binary_path = 'python2'
+        let g:jedi#force_py_version = 2
+        let g:ale_python_pylint_executable = 'pylint_2'
+    elseif a:py_name == "py3"
+        let g:ycm_python_binary_path = 'python3'
+        let g:jedi#force_py_version = 3
+        let g:ale_python_pylint_executable = 'pylint'
+    endif
+
+    write
+endfunction
+
+command PY3 call Switch_To_PyX("py3")
+command PY2 call Switch_To_PyX("py2")
 
 
 " Vim-Airline Configuration
@@ -414,11 +432,11 @@ set autowrite
 " jedi.vim
 let g:jedi#use_tabs_not_buffers = 1
 autocmd FileType python setlocal completeopt-=preview
-" " disable ycm python
+" disable ycm python
 " let g:ycm_filetype_specific_completion_to_disable = {
-" \ 'gitcommit': 1,
-" \ 'python': 1
-" \}
+"             \ 'gitcommit': 1,
+"             \ 'python': 1
+"             \}
 
 " Tagbar
 nmap <C-b> :TagbarToggle<CR>
