@@ -10,6 +10,7 @@ my vim config files
 ## features
 
 - IDE-like dev environ for Python, Go, etc.
+- switch between python2 and python3 with one command (`PY2` / `PY3`)
 - installs plugins automatically using [vim-plug](https://github.com/junegunn/vim-plug)
 - must-have plugins to satisfy your daily needs
 - customizable keyboard shortcuts
