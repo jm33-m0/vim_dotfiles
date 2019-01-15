@@ -402,7 +402,7 @@ let g:airline_right_sep = '◀'
 let g:airline_symbols.crypt = '🔒'
 let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.spell = 's'
-let g:airline_symbols.notexists = '🗴'
+let g:airline_symbols.notexists = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
 
 " powerline symbols
