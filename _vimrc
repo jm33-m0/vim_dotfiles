@@ -30,6 +30,7 @@ Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries'}
 Plug 'PProvost/vim-ps1'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'chazy/cscope_maps', { 'for': 'c' }
 
 " Appearance
 Plug 'flazz/vim-colorschemes'
