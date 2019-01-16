@@ -5,6 +5,7 @@ my vim config files
 
 - please use [powerline-fonts](https://github.com/powerline/fonts) for special characters rendering
 - make sure you have read the `vimrc` code before installing it, 'coz there're some dependencies that you have to be aware of
+- **Read vimrc before using**, you need to be familiar with my keybindings
 - works fine for Windows and Linux (should do on Mac too, but haven't tested)
 
 ## language specific
@@ -18,8 +19,9 @@ my vim config files
 
 ### c/cpp
 
-- use `:YcmGenerateConfig` in your project, to enable autocompletion (requires `Makefile`), check YCM's doc for details
-- when browsing code from a large project such as linux kernel, use [cscope](http://cscope.sourceforge.net/cscope_vim_tutorial.html) for navigation
+- use `:YcmGenerateConfig` in your project, to enable autocompletion and other features provided by YCM (requires `Makefile`), check [YCM's doc](https://valloric.github.io/YouCompleteMe/#c-family-semantic-completion) for details
+- when browsing code of a large project such as linux kernel, use [cscope](http://cscope.sourceforge.net/cscope_vim_tutorial.html) for navigation
+- cscope can be installed via `apt install cscope`, you can read it doc [here](http://cscope.sourceforge.net/cscope_maps.vim)
 
 ## features
 
