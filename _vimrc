@@ -27,9 +27,9 @@ Plug 'junegunn/vim-easy-align'
 
 " Languages
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries'}
-Plug 'PProvost/vim-ps1'
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
+" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'chazy/cscope_maps', { 'for': 'c' }
 
 " Appearance
@@ -37,7 +37,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
-" Plug 'lambdalisue/vim-fullscreen'
+" Plug 'lambdalisue/vim-fullscreen' " for Windows
 
 call plug#end()
 filetype plugin indent on    " required
@@ -318,7 +318,6 @@ let g:ycm_add_preview_to_completeopt = 0
 
 let g:ycm_filetype_blacklist = {
             \ 'tagbar': 1,
-            \ 'python': 1,
             \ 'qf': 1,
             \ 'notes': 1,
             \ 'markdown': 1,
@@ -337,7 +336,7 @@ let g:ale_lint_delay = 500
 let g:ale_open_list = 0
 let g:ale_set_loclist = 0
 let g:ale_lint_on_enter = 1
-let g:ale_rust_rls_toolchain = 'stable'
+" let g:ale_rust_rls_toolchain = 'stable'
 
 let g:ale_linters = {
             \   'javascript': ['eslint'],
@@ -360,12 +359,16 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 function Switch_To_PyX(py_name)
     if a:py_name == "py2"
         let g:ycm_python_binary_path = 'python2'
-        let g:jedi#force_py_version = 2
+        :silent YcmRestartServer
+        " let g:jedi#force_py_version = 2
         let g:ale_python_pylint_executable = 'pylint_2'
+        let g:ale_python_isort_executable = 'isort_2'
     elseif a:py_name == "py3"
         let g:ycm_python_binary_path = 'python3'
-        let g:jedi#force_py_version = 3
+        :silent YcmRestartServer
+        " let g:jedi#force_py_version = 3
         let g:ale_python_pylint_executable = 'pylint'
+        let g:ale_python_isort_executable = 'isort'
     endif
 
     write
@@ -431,8 +434,8 @@ let g:go_highlight_methods = 1
 set autowrite
 
 " jedi.vim
-let g:jedi#use_tabs_not_buffers = 1
-autocmd FileType python setlocal completeopt-=preview
+" let g:jedi#use_tabs_not_buffers = 1
+" autocmd FileType python setlocal completeopt-=preview
 " disable ycm python
 " let g:ycm_filetype_specific_completion_to_disable = {
 "             \ 'gitcommit': 1,
