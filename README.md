@@ -16,6 +16,8 @@ my vim config files
 - make sure you install for both python2 and python3
 - and rename the python2 version under `~/.local/bin` to `OriginalName_2`, check `_vimrc` for details
 - `:PY2` / `:PY3` helps you switch between python2 and python3
+- `call Use_Py('/path/to/python')` to switch to a custom python interpreter for YCM
+- run `virtualenv .venv` under project root, ALE will choose your python automatically (dont forget to run `/path/to/python -m pip install pylint` too
 
 ### c/cpp
 

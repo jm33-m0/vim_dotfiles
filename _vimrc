@@ -347,6 +347,10 @@ let g:ale_linters = {
             \   'go': ['gometalinter'],
             \}
 
+let g:ale_fixers = {
+            \   'python': ['isort', 'add_blank_lines_for_python_control_statements'],
+            \}
+
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " if linter got annoying, you can set the frq to normal
@@ -360,13 +364,11 @@ function Switch_To_PyX(py_name)
     if a:py_name == "py2"
         let g:ycm_python_binary_path = 'python2'
         :silent YcmRestartServer
-        " let g:jedi#force_py_version = 2
         let g:ale_python_pylint_executable = 'pylint_2'
         let g:ale_python_isort_executable = 'isort_2'
     elseif a:py_name == "py3"
         let g:ycm_python_binary_path = 'python3'
         :silent YcmRestartServer
-        " let g:jedi#force_py_version = 3
         let g:ale_python_pylint_executable = 'pylint'
         let g:ale_python_isort_executable = 'isort'
     endif
@@ -376,6 +378,14 @@ endfunction
 
 command PY3 call Switch_To_PyX("py3")
 command PY2 call Switch_To_PyX("py2")
+
+" Use specified python virtualenv
+function Use_Py(py_path)
+    let g:ycm_python_binary_path = a:py_path
+    :silent YcmRestartServer
+
+    write
+endfunction
 
 
 " Vim-Airline Configuration
