@@ -12,12 +12,30 @@ my vim config files
 
 ### python
 
+#### PY2/3
+
 - `python -m pip install autopep8 pylint --user`
 - make sure you install for both python2 and python3
 - and rename the python2 version under `~/.local/bin` to `OriginalName_2`, check `_vimrc` for details
 - `:PY2` / `:PY3` helps you switch between python2 and python3
+
+#### virtualenv
+
 - `call Use_Py('/path/to/python')` to switch to a custom python interpreter for YCM
 - run `virtualenv .venv` under project root, ALE will choose your python automatically (dont forget to run `/path/to/python -m pip install pylint` too
+
+- for YCM
+
+A common practice when working on a Python project is to install its dependencies in a virtual environment and develop the project inside that environment. To support this, YCM needs to know the interpreter path of the virtual environment. You can specify it by creating a .ycm_extra_conf.py file at the root of your project with the following contents:
+
+```
+def Settings( **kwargs ):
+  return {
+    'interpreter_path': '/path/to/virtual/environment/python'
+  }
+```
+
+where /path/to/virtual/environment/python is the path to the Python used by the virtual environment you are working in. Typically, the executable can be found in the Scripts folder of the virtual environment directory on Windows and in the bin folder on other platforms.
 
 ### c/cpp
 
