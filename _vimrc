@@ -206,16 +206,17 @@ set t_Co=256
 
 try
     colorscheme molokai_dark
+    " colorscheme molokai
 catch
     colorscheme default
 endtry
 
-if has("gui_running")
-    " In many terminal emulators the mouse works just fine, thus enable it.
-    if has('mouse')
-        set mouse=a
-    endif
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+    set mouse=a
+endif
 
+if has("gui_running")
     " Set a nicer font.
     set guifont=Source\ Code\ Pro\ for\ Powerline:h10:cDEFAULT
     " Set window size
@@ -306,7 +307,7 @@ set cmdheight=1
 " YCM conf
 " Apply YCM FixIt
 map <F9> :YcmCompleter FixIt<CR>
-map <F7> :YcmCompleter GoToDefinition<CR>
+map <F12> :YcmCompleter GoToDefinition<CR>
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -389,8 +390,8 @@ endfunction
 
 
 " Vim-Airline Configuration
-" let g:airline_theme = 'molokai'
-let g:airline_theme = 'dark'
+let g:airline_theme = 'minimalist'
+" let g:airline_theme = 'dark'
 let g:airline#extensions#tabline#enabled = 1
 let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 1
