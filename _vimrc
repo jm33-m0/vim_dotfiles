@@ -85,7 +85,8 @@ command T %s/\s\+$//e
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" mitigate modeline RCE
+set nomodeline
 " kill buffer
 nmap <leader>k :bdelete<CR>
 " Switch to next buffer
