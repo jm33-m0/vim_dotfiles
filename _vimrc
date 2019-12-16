@@ -236,7 +236,11 @@ endif
 
 if has("gui_running")
     " Set a nicer font.
-    set guifont=monospace
+    if has('win32')
+        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline
+    else
+        set guifont=hack
+    endif
     " Set window size
     set lines=36
     set columns=136
