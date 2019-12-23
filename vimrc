@@ -432,36 +432,6 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " let g:ale_set_quickfix = 1
 " let g:ale_keep_list_window_open = 1
 
-" Handle both python2 and python3
-" requires your pylint2 executable to be named `pylint_2`
-function Switch_To_PyX(py_name)
-    if a:py_name == "py2"
-        let g:ycm_python_binary_path = 'python2'
-        :silent YcmRestartServer
-        let g:ale_python_pylint_executable = 'pylint_2'
-        let g:ale_python_isort_executable = 'isort_2'
-    elseif a:py_name == "py3"
-        let g:ycm_python_binary_path = 'python3'
-        :silent YcmRestartServer
-        let g:ale_python_pylint_executable = 'pylint'
-        let g:ale_python_isort_executable = 'isort'
-    endif
-
-    write
-endfunction
-
-command PY3 call Switch_To_PyX("py3")
-command PY2 call Switch_To_PyX("py2")
-
-" Use specified python virtualenv
-function Use_Py(py_path)
-    let g:ycm_python_binary_path = a:py_path
-    :silent YcmRestartServer
-
-    write
-endfunction
-
-
 """""""" LeaderF
 let g:Lf_ShortcutF = '<c-p>'
 let g:Lf_ShortcutB = '<c-n>'
@@ -537,16 +507,6 @@ set autowrite
 
 nmap <leader>gr :GoReferrers<cr>
 
-" jedi.vim
-" let g:jedi#use_tabs_not_buffers = 1
-" autocmd FileType python setlocal completeopt-=preview
-" disable ycm python
-" let g:ycm_filetype_specific_completion_to_disable = {
-"             \ 'gitcommit': 1,
-"             \ 'python': 1
-"             \}
-
-
 """""""""""""""""" Tagbar
 nmap <C-b> :TagbarToggle<CR>
 
@@ -568,9 +528,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
 
 """""""""""""""""" vim-autoformat
 au BufWrite * :silent Autoformat

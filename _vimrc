@@ -9,39 +9,26 @@ set nocompatible              " be iMproved, required
 call plug#begin('~/.vim/bundle')
 
 " General dev
-" Plug 'w0rp/ale' " general linter
-" Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --clang-completer --go-completer' } " general completer
-" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " file explorer
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'tomtom/tcomment_vim'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'Chiel92/vim-autoformat'
-" Plug 'junegunn/vim-easy-align'
-Plug 'Yggdroot/LeaderF' " Ctrl-P search
 
 " Languages
 " Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries'}
 Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
 Plug 'godlygeek/tabular', { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-" Plug 'ludovicchabant/vim-gutentags'
-" Plug 'skywind3000/gutentags_plus'
-" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-" Plug 'chazy/cscope_maps', { 'for': 'c' }
 
 " Appearance
 Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
-" Plug 'lambdalisue/vim-fullscreen' " for Windows
 
 call plug#end()
 filetype plugin indent on    " required
@@ -80,8 +67,6 @@ command XXD %!xxd
 
 " Set paste
 set pastetoggle=<F2>
-" command P set paste
-" command NP set nopaste
 
 " Remove trailing whitespaces
 command T %s/\s\+$//e
@@ -274,10 +259,7 @@ highlight clear SpellRare
 highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
-" highlight Pmenu ctermfg=7 ctermbg=234 guibg=#d0d0d0 guifg=#8a8a8a
 highlight Search cterm=NONE ctermfg=grey ctermbg=black guibg=#2a241a guifg=#8a8a8a
-" highlight CursorColumn ctermbg=234 guibg=#d0d0d0
-" highlight CursorLine ctermbg=234 guibg=#d0d0d0
 
 
 
@@ -326,164 +308,6 @@ set cmdheight=1
 " ==>> Plugs
 """"""""""""""""""""""""""""""
 
-"""""""""""" gtags
-" set cscopeprg='gtags-cscope'
-" let $GTAGSLABEL = 'native-pygments'
-" let $GTAGSCONF = '/home/jm33/.vim/gtags.conf'
-"
-" vim-gutentags
-" let g:gutentags_modules = ['ctags', 'gtags_cscope']
-" let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-" let g:gutentags_ctags_tagfile = '.tags'
-" let s:vim_tags = expand('~/.cache/tags')
-" let g:gutentags_cache_dir = s:vim_tags
-" let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-" let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-" let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-" if !isdirectory(s:vim_tags)
-"     silent! call mkdir(s:vim_tags, 'p')
-" endif
-" let g:gutentags_define_advanced_commands = 1
-
-"""""""""""" YCM conf
-" Apply YCM FixIt
-" map <F9> :YcmCompleter FixIt<CR>
-" map <F12> :YcmCompleter GoToDefinition<CR>
-" let g:ycm_confirm_extra_conf = 0
-" let g:ycm_seed_identifiers_with_syntax = 1
-" let g:ycm_collect_identifiers_from_tags_files = 1
-" set completeopt=menu,menuone
-" let g:ycm_add_preview_to_completeopt = 0
-" let g:ycm_show_diagnostics_ui = 0
-" let g:ycm_server_log_level = 'info'
-" let g:ycm_min_num_identifier_candidate_chars = 2
-" let g:ycm_collect_identifiers_from_comments_and_strings = 1
-" let g:ycm_key_invoke_completion = '<c-space>'
-"
-" let g:ycm_semantic_triggers =  {
-"             \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-"             \ 'cs,lua,javascript': ['re!\w{2}'],
-"             \}
-"
-" let g:ycm_filetype_blacklist = {
-"             \ 'tagbar': 1,
-"             \ 'qf': 1,
-"             \ 'notes': 1,
-"             \ 'markdown': 1,
-"             \ 'unite': 1,
-"             \ 'text': 1,
-"             \ 'vimwiki': 1,
-"             \ 'pandoc': 1,
-"             \ 'infolog': 1,
-"             \ 'mail': 1
-"             \}
-
-
-
-"""""""""""" ALE linters
-" let g:ale_completion_enabled = 0
-" let g:ale_open_list = 0
-" let g:ale_set_loclist = 0
-" let g:ale_lint_on_enter = 1
-" " let g:ale_rust_rls_toolchain = 'stable'
-"
-" " better error sign
-" let g:ale_sign_error = '✘'
-" let g:ale_sign_warning = '⚠'
-" highlight ALEErrorSign ctermbg=NONE ctermfg=red
-" highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-"
-" " parse Makefile, to recognize include path
-" let g:ale_c_parse_makefile = 1
-" let g:ale_c_parse_compile_commands = 1
-"
-" let g:ale_linters_explicit = 1
-" let g:ale_completion_delay = 500
-" let g:ale_echo_delay = 20
-" let g:ale_lint_delay = 500
-" let g:ale_echo_msg_format = '[%linter%] %code: %%s'
-" let g:ale_lint_on_insert_leave = 1
-" let g:airline#extensions#ale#enabled = 1
-"
-" " let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
-" " let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
-" let g:ale_c_cppcheck_options = ''
-" let g:ale_cpp_cppcheck_options = ''
-"
-" " do NOT enable-all go linters
-" let g:ale_go_golangci_lint_options = ''
-" " package level please
-" let g:ale_go_golangci_lint_package = 1
-"
-" let g:ale_linters = {
-"             \   'javascript': ['eslint'],
-"             \   'rust': ['rls'],
-"             \   'python': ['pylint'],
-"             \   'cpp': ['cppcheck'],
-"             \   'go': ['golangci-lint', 'golint', 'govet'],
-"             \   'c': ['gcc'],
-"             \   'sh': ['shellcheck'],
-"             \}
-"
-" let g:ale_fixers = {
-"             \   'python': ['isort', 'add_blank_lines_for_python_control_statements'],
-"             \}
-"
-" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-" nmap <silent> <C-j> <Plug>(ale_next_wrap)
-" if linter got annoying, you can set the frq to normal
-" let g:ale_lint_on_text_changed = 'normal'
-" let g:ale_set_quickfix = 1
-" let g:ale_keep_list_window_open = 1
-
-" Handle both python2 and python3
-" requires your pylint2 executable to be named `pylint_2`
-function Switch_To_PyX(py_name)
-    if a:py_name == "py2"
-        let g:ycm_python_binary_path = 'python2'
-        :silent YcmRestartServer
-        let g:ale_python_pylint_executable = 'pylint_2'
-        let g:ale_python_isort_executable = 'isort_2'
-    elseif a:py_name == "py3"
-        let g:ycm_python_binary_path = 'python3'
-        :silent YcmRestartServer
-        let g:ale_python_pylint_executable = 'pylint'
-        let g:ale_python_isort_executable = 'isort'
-    endif
-
-    write
-endfunction
-
-command PY3 call Switch_To_PyX("py3")
-command PY2 call Switch_To_PyX("py2")
-
-" Use specified python virtualenv
-function Use_Py(py_path)
-    let g:ycm_python_binary_path = a:py_path
-    :silent YcmRestartServer
-
-    write
-endfunction
-
-
-"""""""" LeaderF
-let g:Lf_ShortcutF = '<c-p>'
-let g:Lf_ShortcutB = '<c-n>'
-noremap <leader>u :LeaderfMru<cr>
-noremap <leader>f :LeaderfFunction<cr>
-noremap <leader>b :LeaderfBuffer<cr>
-noremap <leader>m :LeaderfTag<cr>
-let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
-
-let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
-let g:Lf_WorkingDirectoryMode = 'Ac'
-let g:Lf_WindowHeight = 0.30
-let g:Lf_CacheDirectory = expand('~/.vim/cache')
-let g:Lf_ShowRelativePath = 0
-let g:Lf_HideHelp = 1
-let g:Lf_StlColorscheme = 'powerline'
-let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
-
 """""""" Vim-Airline Configuration
 let g:airline_theme = 'minimalist'
 " let g:airline_theme = 'dark'
@@ -524,33 +348,6 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
 
-"""""""""""""""""" vim-go
-" since we have ALE enabled, vim-go doesn't have to run lint here
-" let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-" let g:go_fmt_command = "goimports"
-" let g:go_gocode_autobuild = 1
-" let g:go_gocode_unimported_packages = 1
-" let g:go_highlight_operators = 1
-" let g:go_highlight_extra_types = 1
-" let g:go_highlight_build_constraints = 1
-" let g:go_highlight_types = 1
-" let g:go_highlight_fields = 1
-" let g:go_highlight_functions = 1
-" let g:go_highlight_methods = 1
-" set autowrite
-"
-" nmap <leader>gr :GoReferrers<cr>
-
-" jedi.vim
-" let g:jedi#use_tabs_not_buffers = 1
-" autocmd FileType python setlocal completeopt-=preview
-" disable ycm python
-" let g:ycm_filetype_specific_completion_to_disable = {
-"             \ 'gitcommit': 1,
-"             \ 'python': 1
-"             \}
-
-
 """""""""""""""""" Tagbar
 nmap <C-b> :TagbarToggle<CR>
 
@@ -566,15 +363,6 @@ map <C-z> :NERDTreeToggle<CR>
 
 " How can I close vim if the only window left open is a NERDTree?
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-"""""""""""""""""" vim-snippets
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-k>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
 
 """""""""""""""""" vim-autoformat
 au BufWrite * :silent Autoformat
