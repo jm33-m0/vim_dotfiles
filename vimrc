@@ -41,6 +41,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
+Plug 'takac/vim-hardtime'
 " Plug 'lambdalisue/vim-fullscreen' " for Windows
 
 call plug#end()
@@ -51,6 +52,9 @@ filetype plugin indent on    " required
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set to auto read when a file is changed from the outside
 set autoread
+
+" Enable hard mode
+let g:hardtime_default_on = 1
 
 "Dismiss the start screen
 set shortmess=atI
@@ -96,7 +100,7 @@ set nomodeline
 nmap <leader>k :bdelete<CR>
 " Switch to next buffer
 nmap <leader>l :bn<CR>
-nmap <leader>p :bp<CR>
+" nmap <leader>p :bp<CR>
 nmap <leader>n :enew <CR>
 nmap <leader>_ :new <CR>
 nmap <leader>- :vnew <CR>
@@ -325,7 +329,7 @@ set cmdheight=1
 """""""""""" gtags
 set cscopeprg='gtags-cscope'
 let $GTAGSLABEL = 'native-pygments'
-let $GTAGSCONF = '/home/$USER/.vim/gtags.conf'
+let $GTAGSCONF = '/home/u/.vim/gtags.conf'
 
 """""""""""" vim-gutentags
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
