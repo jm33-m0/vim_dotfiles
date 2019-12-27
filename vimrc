@@ -56,6 +56,16 @@ set autoread
 " Enable hard mode
 let g:hardtime_default_on = 1
 
+" Fix Ctrl+Arrow in PuTTY
+noremap <ESC>[1;5A <NOP>
+noremap <ESC>[1;5B <NOP>
+noremap <ESC>[1;5C <NOP>
+noremap <ESC>[1;5D <NOP>
+noremap! <ESC>[1;5A <NOP>
+noremap! <ESC>[1;5B <NOP>
+noremap! <ESC>[1;5C <NOP>
+noremap! <ESC>[1;5D <NOP>
+
 "Dismiss the start screen
 set shortmess=atI
 
