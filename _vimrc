@@ -244,6 +244,7 @@ if has("gui_running")
         set guifont=Fira\ Mono\ for\ Powerline
     else
         set guifont=monospace
+    endif
 
     " Set window size
     set lines=36
