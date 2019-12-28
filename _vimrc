@@ -19,16 +19,20 @@ Plug 'tpope/vim-fugitive'
 Plug 'Chiel92/vim-autoformat'
 
 " Languages
-" Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries'}
 Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
 Plug 'godlygeek/tabular', { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+" Plug 'chazy/cscope_maps', { 'for': 'c' }
 
 " Appearance
 Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
+Plug 'takac/vim-hardtime'
+" Plug 'lambdalisue/vim-fullscreen' " for Windows
 
 call plug#end()
 filetype plugin indent on    " required
@@ -38,6 +42,19 @@ filetype plugin indent on    " required
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set to auto read when a file is changed from the outside
 set autoread
+
+" Enable hard mode
+let g:hardtime_default_on = 1
+
+" Fix Ctrl+Arrow in PuTTY
+noremap <ESC>[1;5A <NOP>
+noremap <ESC>[1;5B <NOP>
+noremap <ESC>[1;5C <NOP>
+noremap <ESC>[1;5D <NOP>
+noremap! <ESC>[1;5A <NOP>
+noremap! <ESC>[1;5B <NOP>
+noremap! <ESC>[1;5C <NOP>
+noremap! <ESC>[1;5D <NOP>
 
 "Dismiss the start screen
 set shortmess=atI
@@ -67,6 +84,8 @@ command XXD %!xxd
 
 " Set paste
 set pastetoggle=<F2>
+" command P set paste
+" command NP set nopaste
 
 " Remove trailing whitespaces
 command T %s/\s\+$//e
@@ -81,7 +100,7 @@ set nomodeline
 nmap <leader>k :bdelete<CR>
 " Switch to next buffer
 nmap <leader>l :bn<CR>
-nmap <leader>p :bp<CR>
+" nmap <leader>p :bp<CR>
 nmap <leader>n :enew <CR>
 nmap <leader>_ :new <CR>
 nmap <leader>- :vnew <CR>
@@ -222,10 +241,10 @@ endif
 if has("gui_running")
     " Set a nicer font.
     if has('win32')
-        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline
+        set guifont=Fira\ Mono\ for\ Powerline
     else
-        set guifont=hack
-    endif
+        set guifont=monospace
+
     " Set window size
     set lines=36
     set columns=136
@@ -259,7 +278,10 @@ highlight clear SpellRare
 highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
+" highlight Pmenu ctermfg=7 ctermbg=234 guibg=#d0d0d0 guifg=#8a8a8a
 highlight Search cterm=NONE ctermfg=grey ctermbg=black guibg=#2a241a guifg=#8a8a8a
+" highlight CursorColumn ctermbg=234 guibg=#d0d0d0
+" highlight CursorLine ctermbg=234 guibg=#d0d0d0
 
 
 
@@ -347,6 +369,7 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
+
 
 """""""""""""""""" Tagbar
 nmap <C-b> :TagbarToggle<CR>
