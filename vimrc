@@ -22,8 +22,9 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'Chiel92/vim-autoformat'
-" Plug 'junegunn/vim-easy-align'
-Plug 'Yggdroot/LeaderF' " Ctrl-P search
+" Plug 'junegunn/vim-easy-align' " too difficult to use!
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " Ctrl-P search
+Plug 'Yggdroot/indentLine'
 
 " Languages
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries'}
@@ -446,6 +447,11 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " let g:ale_set_quickfix = 1
 " let g:ale_keep_list_window_open = 1
 
+"""""""" IndentLine
+let g:indentLine_enabled = 1
+let g:indentLine_char = '▏'
+" let g:indentLine_setColors = 0
+
 """""""" LeaderF
 let g:Lf_ShortcutF = '<c-p>'
 let g:Lf_ShortcutB = '<c-n>'
@@ -454,6 +460,7 @@ noremap <leader>f :LeaderfFunction<cr>
 noremap <leader>b :LeaderfBuffer<cr>
 noremap <leader>m :LeaderfTag<cr>
 let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
+" let g:Lf_WindowPosition = 'popup'
 
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_WorkingDirectoryMode = 'Ac'
