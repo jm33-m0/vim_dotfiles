@@ -24,7 +24,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'Chiel92/vim-autoformat'
 " Plug 'junegunn/vim-easy-align' " too difficult to use!
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " Ctrl-P search
-Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine', { 'for': ['python', 'markdown', 'html', 'sh'] }
 
 " Languages
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries'}
