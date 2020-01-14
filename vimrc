@@ -42,7 +42,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
-Plug 'takac/vim-hardtime'
+" Plug 'takac/vim-hardtime'
 " Plug 'lambdalisue/vim-fullscreen' " for Windows
 
 call plug#end()
@@ -94,9 +94,7 @@ command W w !sudo tee % > /dev/null
 command XXD %!xxd
 
 " Set paste
-set pastetoggle=<F2>
-" command P set paste
-" command NP set nopaste
+set pastetoggle=<F8>
 
 " Remove trailing whitespaces
 command T %s/\s\+$//e
@@ -139,7 +137,7 @@ endif
 
 "Always show current position
 set ruler
-set cursorcolumn
+" set cursorcolumn
 set cursorline
 
 " Height of the command bar
@@ -431,7 +429,7 @@ let g:ale_linters = {
             \   'rust': ['rls'],
             \   'python': ['pylint'],
             \   'cpp': ['cppcheck'],
-            \   'go': ['golangci-lint', 'golint', 'govet'],
+            \   'go': ['golint', 'golangci-lint'],
             \   'c': ['gcc'],
             \   'sh': ['shellcheck'],
             \}
@@ -498,7 +496,7 @@ endif
 let g:airline_symbols.crypt = '🔒'
 let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.spell = 's'
-let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.notexists = 'NE'
 let g:airline_symbols.whitespace = 'Ξ'
 
 " powerline symbols
@@ -514,6 +512,7 @@ let g:airline_symbols.maxlinenr = ''
 """""""""""""""""" vim-go
 " since we have ALE enabled, vim-go doesn't have to run lint here
 " let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_gorename_command = 'gopls'
 let g:go_fmt_command = "goimports"
 let g:go_gocode_autobuild = 1
 let g:go_gocode_unimported_packages = 1
