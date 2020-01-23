@@ -512,7 +512,7 @@ let g:airline_symbols.maxlinenr = ''
 """""""""""""""""" vim-go
 " since we have ALE enabled, vim-go doesn't have to run lint here
 " let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-let g:go_gorename_command = 'gopls'
+let g:go_rename_command = 'gopls'
 let g:go_fmt_command = "goimports"
 let g:go_gocode_autobuild = 1
 let g:go_gocode_unimported_packages = 1
@@ -556,3 +556,4 @@ let g:autoformat_autoindent = 0
 
 """""""""""""""""" vim-markdown
 let g:vim_markdown_toc_autofit = 1
+let g:vim_markdown_conceal = 0
