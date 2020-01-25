@@ -556,3 +556,4 @@ let g:autoformat_autoindent = 0
 """""""""""""""""" vim-markdown
 let g:vim_markdown_toc_autofit = 1
 let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
