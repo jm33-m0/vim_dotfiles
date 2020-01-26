@@ -338,7 +338,7 @@ set cmdheight=1
 """""""""""" gtags
 set cscopeprg='gtags-cscope'
 let $GTAGSLABEL = 'native-pygments'
-let $GTAGSCONF = '/home/u/.vim/gtags.conf'
+let $GTAGSCONF = expand('~/.vim/gtags.conf')
 
 """""""""""" vim-gutentags
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
