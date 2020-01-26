@@ -249,7 +249,7 @@ endif
 
 if has("gui_running")
     " Set a nicer font.
-    set guifont=monospace
+    set guifont=ubuntu\ mono\ 12
     " Set window size
     set lines=36
     set columns=136
