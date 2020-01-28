@@ -249,7 +249,7 @@ endif
 
 if has("gui_running")
     " Set a nicer font.
-    set guifont=ubuntu\ mono\ 12
+    set guifont=ubuntu\ mono\ 13
     " Set window size
     set lines=36
     set columns=136
@@ -495,7 +495,7 @@ endif
 let g:airline_symbols.crypt = '🔒'
 let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.spell = 's'
-let g:airline_symbols.notexists = 'NE'
+let g:airline_symbols.notexists = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
 
 " powerline symbols
