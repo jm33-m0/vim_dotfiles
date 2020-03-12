@@ -235,9 +235,8 @@ catch
     colorscheme default
 endtry
 
-" In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
-    set mouse=a
+    set mouse=
 endif
 
 if has("gui_running")
