@@ -236,7 +236,7 @@ catch
 endtry
 
 if has('mouse')
-    set mouse=
+    set mouse=a
 endif
 
 if has("gui_running")

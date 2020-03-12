@@ -252,9 +252,8 @@ catch
 endtry
 
 " In many terminal emulators the mouse works just fine, thus enable it.
-" No, mouse SUCKS
 if has('mouse')
-    set mouse=
+    set mouse=a
 endif
 
 if has("gui_running")
@@ -539,6 +538,11 @@ nmap <leader>gr :GoReferrers<cr>
 """""""""""""""""" Tagbar
 nmap <C-b> :Vista!!<CR>
 let g:vista#renderer#enable_icon = 0
+
+"""""""""""""""""" vim-visual-multi
+let g:VM_maps = {}
+let g:VM_maps['Find Under']         = '<C-z>'           " replace C-n
+let g:VM_maps['Find Subword Under'] = '<C-z>'           " replace visual C-n
 
 
 """""""""""""""""" NerdTree
