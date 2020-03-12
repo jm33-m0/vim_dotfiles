@@ -465,6 +465,7 @@ noremap <leader>u :LeaderfMru<cr>
 noremap <leader>f :LeaderfFunction<cr>
 noremap <leader>b :LeaderfBuffer<cr>
 noremap <leader>m :LeaderfTag<cr>
+noremap <leader>r :Leaderf rg<cr>
 let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
 " let g:Lf_WindowPosition = 'popup'
 
