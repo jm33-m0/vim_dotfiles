@@ -12,8 +12,9 @@ call plug#begin('~/.vim/bundle')
 Plug 'w0rp/ale' " general linter
 Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --clang-completer --go-completer' } " general completer
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " file explorer
+" Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
+Plug 'liuchengxu/vista.vim',
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " file explorer
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode'
@@ -21,10 +22,13 @@ Plug 'tomtom/tcomment_vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-repeat'
 Plug 'Chiel92/vim-autoformat'
 " Plug 'junegunn/vim-easy-align' " too difficult to use!
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " Ctrl-P search
 Plug 'Yggdroot/indentLine', { 'for': ['python', 'markdown', 'html', 'sh'] }
+Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
 
 " Languages
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries'}
@@ -54,18 +58,23 @@ filetype plugin indent on    " required
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" Enable hard mode
-let g:hardtime_default_on = 1
-
-" Fix Ctrl+Arrow in PuTTY
+" Disable Ctrl-xxx messed-up keys
 noremap <ESC>[1;5A <NOP>
 noremap <ESC>[1;5B <NOP>
 noremap <ESC>[1;5C <NOP>
 noremap <ESC>[1;5D <NOP>
+noremap <ESC>[1;5H <NOP>
+noremap <ESC>[1;5F <NOP>
+noremap <ESC>[5;5~ <NOP>
+noremap <ESC>[6;5~ <NOP>
 noremap! <ESC>[1;5A <NOP>
 noremap! <ESC>[1;5B <NOP>
 noremap! <ESC>[1;5C <NOP>
 noremap! <ESC>[1;5D <NOP>
+noremap! <ESC>[1;5H <NOP>
+noremap! <ESC>[1;5F <NOP>
+noremap! <ESC>[5;5~ <NOP>
+noremap! <ESC>[6;5~ <NOP>
 
 "Dismiss the start screen
 set shortmess=atI
@@ -341,7 +350,7 @@ let $GTAGSLABEL = 'native-pygments'
 let $GTAGSCONF = expand('~/.vim/gtags.conf')
 
 """""""""""" vim-gutentags
-let g:gutentags_modules = ['ctags', 'gtags_cscope']
+let g:gutentags_modules = ['gtags_cscope']
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 let g:gutentags_ctags_tagfile = '.tags'
 let s:vim_tags = expand('~/.cache/tags')
@@ -363,9 +372,9 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 set completeopt=menu,menuone
 let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_diagnostics_ui = 1
+let g:ycm_show_diagnostics_ui = 0
 " let g:ycm_server_log_level = 'info'
-let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_min_num_identifier_candidate_chars = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 " let g:ycm_key_invoke_completion = '<c-space>'
 
@@ -527,7 +536,8 @@ set autowrite
 nmap <leader>gr :GoReferrers<cr>
 
 """""""""""""""""" Tagbar
-nmap <C-b> :TagbarToggle<CR>
+nmap <C-b> :Vista!!<CR>
+let g:vista#renderer#enable_icon = 0
 
 
 """""""""""""""""" NerdTree
@@ -536,11 +546,12 @@ nmap <C-b> :TagbarToggle<CR>
 " autocmd vimenter * NERDTree
 
 " Toggle NerdTREE
-map <C-z> :NERDTreeToggle<CR>
+" map <C-z> :NERDTreeToggle<CR>
+" map <C-z> :Vexplore<CR>
 
 
 " How can I close vim if the only window left open is a NERDTree?
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 """""""""""""""""" vim-snippets
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.

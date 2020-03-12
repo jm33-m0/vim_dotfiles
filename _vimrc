@@ -9,29 +9,26 @@ set nocompatible              " be iMproved, required
 call plug#begin('~/.vim/bundle')
 
 " General dev
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " file explorer
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-repeat'
 Plug 'Chiel92/vim-autoformat'
+Plug 'Yggdroot/indentLine', { 'for': ['python', 'markdown', 'html', 'sh'] }
+Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
 
 " Languages
 Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
 Plug 'godlygeek/tabular', { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-" Plug 'chazy/cscope_maps', { 'for': 'c' }
 
 " Appearance
 Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
-Plug 'takac/vim-hardtime'
 " Plug 'lambdalisue/vim-fullscreen' " for Windows
 
 call plug#end()
@@ -43,18 +40,23 @@ filetype plugin indent on    " required
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" Enable hard mode
-let g:hardtime_default_on = 1
-
-" Fix Ctrl+Arrow in PuTTY
+" Disable Ctrl-xxx messed-up keys
 noremap <ESC>[1;5A <NOP>
 noremap <ESC>[1;5B <NOP>
 noremap <ESC>[1;5C <NOP>
 noremap <ESC>[1;5D <NOP>
+noremap <ESC>[1;5H <NOP>
+noremap <ESC>[1;5F <NOP>
+noremap <ESC>[5;5~ <NOP>
+noremap <ESC>[6;5~ <NOP>
 noremap! <ESC>[1;5A <NOP>
 noremap! <ESC>[1;5B <NOP>
 noremap! <ESC>[1;5C <NOP>
 noremap! <ESC>[1;5D <NOP>
+noremap! <ESC>[1;5H <NOP>
+noremap! <ESC>[1;5F <NOP>
+noremap! <ESC>[5;5~ <NOP>
+noremap! <ESC>[6;5~ <NOP>
 
 "Dismiss the start screen
 set shortmess=atI
