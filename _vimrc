@@ -18,6 +18,8 @@ Plug 'tpope/vim-repeat'
 Plug 'Chiel92/vim-autoformat'
 Plug 'Yggdroot/indentLine', { 'for': ['python', 'markdown', 'html', 'sh'] }
 Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'liuchengxu/vista.vim'
 
 " Languages
 Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
@@ -242,7 +244,7 @@ endif
 if has("gui_running")
     " Set a nicer font.
     if has('win32')
-        set guifont=Fira\ Mono\ for\ Powerline
+        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11
     else
         set guifont=monospace
     endif
@@ -373,21 +375,36 @@ let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
 
 
+nmap <leader>gr :GoReferrers<cr>
+
 """""""""""""""""" Tagbar
-nmap <C-b> :TagbarToggle<CR>
+nmap <C-b> :Vista!!<CR>
+let g:vista#renderer#enable_icon = 0
 
+"""""""""""""""""" vim-visual-multi
+let g:VM_maps = {}
+let g:VM_maps['Find Under']         = '<C-z>'           " replace C-n
+let g:VM_maps['Find Subword Under'] = '<C-z>'           " replace visual C-n
 
-"""""""""""""""""" NerdTree
+"""""""" LeaderF
+let g:Lf_ShortcutF = '<c-p>'
+let g:Lf_ShortcutB = '<c-n>'
+noremap <leader>u :LeaderfMru<cr>
+noremap <leader>f :LeaderfFunction<cr>
+noremap <leader>b :LeaderfBuffer<cr>
+noremap <leader>m :LeaderfTag<cr>
+noremap <leader>r :Leaderf rg<cr>
+let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
+let g:Lf_WindowPosition = 'popup'
 
-" Auto starts NerdTREE
-" autocmd vimenter * NERDTree
-
-" Toggle NerdTREE
-map <C-z> :NERDTreeToggle<CR>
-
-
-" How can I close vim if the only window left open is a NERDTree?
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+let g:Lf_WorkingDirectoryMode = 'Ac'
+let g:Lf_WindowHeight = 0.30
+let g:Lf_CacheDirectory = expand('~/.vim/cache')
+let g:Lf_ShowRelativePath = 0
+let g:Lf_HideHelp = 1
+let g:Lf_StlColorscheme = 'powerline'
+let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
 
 """""""""""""""""" vim-autoformat
 au BufWrite * :silent Autoformat

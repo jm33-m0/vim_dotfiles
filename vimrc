@@ -351,6 +351,7 @@ let $GTAGSCONF = expand('~/.vim/gtags.conf')
 
 """""""""""" vim-gutentags
 let g:gutentags_modules = ['gtags_cscope']
+" let g:gutentags_modules = ['ctags']
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 let g:gutentags_ctags_tagfile = '.tags'
 let s:vim_tags = expand('~/.cache/tags')
