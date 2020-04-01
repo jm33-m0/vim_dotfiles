@@ -32,6 +32,7 @@ Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
 
 " Languages
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries'}
+Plug 'vim-python/python-syntax', { 'for': 'python' }
 Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
 Plug 'godlygeek/tabular', { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
@@ -232,6 +233,9 @@ syntax enable
 syntax on
 autocmd BufEnter * :syntax sync fromstart " syntax highlighting breaks when paging up/down
 
+" python-syntax
+let g:python_highlight_all = 1
+
 let g:rehash256 = 1
 let g:molokai_original = 1
 set background=dark
@@ -245,8 +249,8 @@ endif
 
 try
     " colorscheme mod8
-    colorscheme molokai_dark
-    " colorscheme molokai
+    " colorscheme molokai_dark
+    colorscheme molokai
 catch
     colorscheme default
 endtry
@@ -439,7 +443,7 @@ let g:ale_linters = {
             \   'rust': ['rls'],
             \   'python': ['pylint'],
             \   'cpp': ['cppcheck'],
-            \   'go': ['golint', 'golangci-lint'],
+            \   'go': ['golangci-lint'],
             \   'sh': ['shellcheck'],
             \}
 
@@ -532,6 +536,9 @@ let g:go_highlight_build_constraints = 1
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_format_strings = 1
 let g:go_highlight_methods = 1
 set autowrite
 
