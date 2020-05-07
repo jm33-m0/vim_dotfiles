@@ -13,7 +13,7 @@ Plug 'w0rp/ale' " general linter
 Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --clang-completer --go-completer' } " general completer
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 " Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
-Plug 'liuchengxu/vista.vim',
+" Plug 'liuchengxu/vista.vim',
 " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " file explorer
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
@@ -262,7 +262,7 @@ endif
 
 if has("gui_running")
     " Set a nicer font.
-    set guifont=ubuntu\ mono\ 13
+    set guifont=FiraMono\ Nerd\ Font
     " Set window size
     set lines=36
     set columns=136
@@ -354,8 +354,8 @@ let $GTAGSLABEL = 'native-pygments'
 let $GTAGSCONF = expand('~/.vim/gtags.conf')
 
 """""""""""" vim-gutentags
-let g:gutentags_modules = ['gtags_cscope']
-" let g:gutentags_modules = ['ctags']
+" let g:gutentags_modules = ['gtags_cscope']
+let g:gutentags_modules = ['ctags']
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 let g:gutentags_ctags_tagfile = '.tags'
 let s:vim_tags = expand('~/.cache/tags')
@@ -485,6 +485,7 @@ let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
 
 """""""" Vim-Airline Configuration
 let g:airline_theme = 'minimalist'
+" let g:airline_powerline_fonts = 0
 " let g:airline_theme = 'dark'
 let g:airline#extensions#tabline#enabled = 1
 let g:hybrid_custom_term_colors = 1
@@ -545,8 +546,8 @@ set autowrite
 nmap <leader>gr :GoReferrers<cr>
 
 """""""""""""""""" Tagbar
-nmap <C-b> :Vista!!<CR>
-let g:vista#renderer#enable_icon = 0
+" nmap <C-b> :Vista!!<CR>
+" let g:vista#renderer#enable_icon = 0
 
 """""""""""""""""" vim-visual-multi
 let g:VM_maps = {}
