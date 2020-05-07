@@ -1,0 +1,7 @@
+#!/bin/bash
+# linux
+# echo "$((100-$(vmstat 1 2|tail -1|awk '{print $15}')))"
+
+# macos
+# ps -A -o %cpu | awk '{s+=$1} END {print s "%"}'
+sysctl -n vm.loadavg | awk '{print $2}'
