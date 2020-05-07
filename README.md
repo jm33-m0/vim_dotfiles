@@ -39,4 +39,5 @@ where /path/to/virtual/environment/python is the path to the Python used by the 
 - must-have plugins to satisfy your daily needs
 - customizable keyboard shortcuts
 
+![screenshot](./img/screenshot.webp)
 ![screenshot](./img/screenshot.jpg)
