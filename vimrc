@@ -12,7 +12,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'w0rp/ale' " general linter
 Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --clang-completer --go-completer' } " general completer
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-" Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
 " Plug 'liuchengxu/vista.vim',
 " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " file explorer
 Plug 'jiangmiao/auto-pairs'
@@ -249,8 +249,8 @@ endif
 
 try
     " colorscheme mod8
-    " colorscheme molokai_dark
-    colorscheme molokai
+    colorscheme molokai_dark
+    " colorscheme molokai
 catch
     colorscheme default
 endtry
@@ -354,8 +354,8 @@ let $GTAGSLABEL = 'native-pygments'
 let $GTAGSCONF = expand('~/.vim/gtags.conf')
 
 """""""""""" vim-gutentags
-" let g:gutentags_modules = ['gtags_cscope']
-let g:gutentags_modules = ['ctags']
+let g:gutentags_modules = ['gtags_cscope']
+" let g:gutentags_modules = ['ctags']
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 let g:gutentags_ctags_tagfile = '.tags'
 let s:vim_tags = expand('~/.cache/tags')
@@ -546,6 +546,7 @@ set autowrite
 nmap <leader>gr :GoReferrers<cr>
 
 """""""""""""""""" Tagbar
+nmap <C-b> :TagbarToggle<CR>
 " nmap <C-b> :Vista!!<CR>
 " let g:vista#renderer#enable_icon = 0
 
