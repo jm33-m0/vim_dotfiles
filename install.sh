@@ -12,7 +12,13 @@ full)
     if ! command -v tmux; then
         echo " tmux not found, please install it"
     fi
-    cp -r ./sh ~
+    if test -e /proc; then
+        mkdir ~/sh
+        cp sh/cpu_usage-linux ~/sh/cpu_usage
+        cp sh/mem_usage-linux ~/sh/mem_usage
+    else
+        cp -r sh ~
+    fi
     echo " tmux config has been installed"
     ;;
 lite)
