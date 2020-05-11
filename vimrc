@@ -59,6 +59,10 @@ filetype plugin indent on    " required
 " Set to auto read when a file is changed from the outside
 set autoread
 
+" Set updatetime, when cursor stay still for 'updatetime', CursorHold is
+" triggered
+set updatetime=1000
+
 " Disable Ctrl-xxx messed-up keys
 noremap <ESC>[1;5A <NOP>
 noremap <ESC>[1;5B <NOP>
@@ -262,7 +266,7 @@ endif
 
 if has("gui_running")
     " Set a nicer font.
-    set guifont=FiraMono\ Nerd\ Font
+    set guifont=MesloLGLNerdFontCompleteM-Regular
     " Set window size
     set lines=36
     set columns=136
@@ -472,7 +476,7 @@ noremap <leader>b :LeaderfBuffer<cr>
 noremap <leader>m :LeaderfTag<cr>
 noremap <leader>r :Leaderf rg<cr>
 let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
-" let g:Lf_WindowPosition = 'popup'
+let g:Lf_WindowPosition = 'popup'
 
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_WorkingDirectoryMode = 'Ac'
@@ -542,6 +546,9 @@ let g:go_highlight_function_calls = 1
 let g:go_highlight_format_strings = 1
 let g:go_highlight_methods = 1
 set autowrite
+
+" popup window for GoDoc
+let g:go_doc_popup_window = 1
 
 nmap <leader>gr :GoReferrers<cr>
 
