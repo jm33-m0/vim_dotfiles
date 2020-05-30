@@ -209,8 +209,8 @@ noremap <Leader>Y "+y
 noremap <Leader>P "+p
 if has('win32')
     set clipboard=unnamed
-" else
-"     set clipboard=unnamedplus
+    " else
+    "     set clipboard=unnamedplus
 endif
 
 " space open/closes folds
@@ -275,6 +275,27 @@ if has("gui_running")
     set guioptions-=T  "remove toolbar
     set guioptions-=r  "remove right-hand scroll bar
     set guioptions-=L  "remove left-hand scroll bar
+endif
+
+if has("gui_macvim")
+    " Press Ctrl-Tab to switch between open tabs (like browser tabs) to
+    " the right side. Ctrl-Shift-Tab goes the other way.
+    noremap <C-Tab> :tabnext<CR>
+    noremap <C-S-w> :tabclose<CR>
+    noremap <C-S-Tab> :tabprev<CR>
+
+    " Switch to specific tab numbers with Command-number
+    noremap <D-1> :tabn 1<CR>
+    noremap <D-2> :tabn 2<CR>
+    noremap <D-3> :tabn 3<CR>
+    noremap <D-4> :tabn 4<CR>
+    noremap <D-5> :tabn 5<CR>
+    noremap <D-6> :tabn 6<CR>
+    noremap <D-7> :tabn 7<CR>
+    noremap <D-8> :tabn 8<CR>
+    noremap <D-9> :tabn 9<CR>
+    " Command-0 goes to the last tab
+    noremap <D-0> :tablast<CR>
 endif
 
 
@@ -476,7 +497,7 @@ noremap <leader>b :LeaderfBuffer<cr>
 noremap <leader>m :LeaderfTag<cr>
 noremap <leader>r :Leaderf rg<cr>
 let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
-let g:Lf_WindowPosition = 'popup'
+" let g:Lf_WindowPosition = 'popup'
 
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_WorkingDirectoryMode = 'Ac'
