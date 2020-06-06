@@ -12,7 +12,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'w0rp/ale' " general linter
 Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --clang-completer --go-completer' } " general completer
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
+" Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
 " Plug 'liuchengxu/vista.vim',
 " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " file explorer
 Plug 'jiangmiao/auto-pairs'
@@ -281,8 +281,8 @@ if has("gui_macvim")
     " Press Ctrl-Tab to switch between open tabs (like browser tabs) to
     " the right side. Ctrl-Shift-Tab goes the other way.
     noremap <C-Tab> :tabnext<CR>
-    noremap <C-S-w> :tabclose<CR>
-    noremap <C-S-Tab> :tabprev<CR>
+    noremap <leader>tc :tabclose<CR>
+    noremap <leader>t :tabnew<CR>
 
     " Switch to specific tab numbers with Command-number
     noremap <D-1> :tabn 1<CR>
@@ -459,7 +459,7 @@ let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
 
 " do NOT enable-all go linters
-let g:ale_go_golangci_lint_options = ''
+let g:ale_go_golangci_lint_options = '-E unparam -E goconst -E gofmt'
 " package level please
 let g:ale_go_golangci_lint_package = 1
 
@@ -574,7 +574,7 @@ let g:go_doc_popup_window = 1
 nmap <leader>gr :GoReferrers<cr>
 
 """""""""""""""""" Tagbar
-nmap <C-b> :TagbarToggle<CR>
+" nmap <C-b> :TagbarToggle<CR>
 " nmap <C-b> :Vista!!<CR>
 " let g:vista#renderer#enable_icon = 0
 
