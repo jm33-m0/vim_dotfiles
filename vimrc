@@ -36,6 +36,7 @@ Plug 'vim-python/python-syntax', { 'for': 'python' }
 Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
 Plug 'godlygeek/tabular', { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 " Plug 'davidhalter/jedi-vim', { 'for': 'python' }
@@ -445,7 +446,6 @@ let g:ale_linters = {
             \   'javascript': ['eslint'],
             \   'rust': ['rls'],
             \   'python': ['pylint'],
-            \   'cpp': ['cppcheck'],
             \   'go': ['golangci-lint'],
             \   'sh': ['shellcheck'],
             \}
