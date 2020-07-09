@@ -381,7 +381,7 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 set completeopt=menu,menuone
 let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_diagnostics_ui = 0
+let g:ycm_show_diagnostics_ui = 1
 " let g:ycm_server_log_level = 'info'
 let g:ycm_min_num_identifier_candidate_chars = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
@@ -446,7 +446,8 @@ let g:ale_linters = {
             \   'javascript': ['eslint'],
             \   'rust': ['rls'],
             \   'python': ['pylint'],
-            \   'go': ['golangci-lint'],
+            \   'c': ['clangd'],
+            \   'cpp': ['clangd'],
             \   'sh': ['shellcheck'],
             \}
 
@@ -504,6 +505,8 @@ let airline#extensions#c_like_langs = ['c', 'cpp', 'cuda', 'go', 'javascript', '
 au bufenter *.c :silent! call airline#extensions#whitespace#disable()
 au bufenter *.ino :silent! call airline#extensions#whitespace#disable()
 au bufenter *.md :silent! call airline#extensions#whitespace#disable()
+
+let g:airline#extensions#ycm#enabled = 1
 
 " symbols and fonts
 if !exists('g:airline_symbols')
