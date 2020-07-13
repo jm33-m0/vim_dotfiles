@@ -55,6 +55,14 @@ call plug#end()
 filetype plugin indent on    " required
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==>> python
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set pythondll=~/.pyenv/versions/2.7.16/Python.framework/Versions/2.7/Python
+set pythonhome=~/.pyenv/versions/2.7.16/Python.framework/Versions/2.7
+set pythonthreedll=~/.pyenv/versions/3.7.7/Python.framework/Versions/3.7/Python
+set pythonthreehome=~/.pyenv/versions/3.7.7/Python.framework/Versions/3.7
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> Comfortable editing
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set to auto read when a file is changed from the outside
