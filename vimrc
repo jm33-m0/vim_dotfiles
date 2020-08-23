@@ -37,6 +37,7 @@ Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
 Plug 'godlygeek/tabular', { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
+Plug 'ferrine/md-img-paste.vim', { 'for': 'markdown' }
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 " Plug 'davidhalter/jedi-vim', { 'for': 'python' }
@@ -57,10 +58,13 @@ filetype plugin indent on    " required
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> python
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set pythondll=~/.pyenv/versions/2.7.16/Python.framework/Versions/2.7/Python
-set pythonhome=~/.pyenv/versions/2.7.16/Python.framework/Versions/2.7
-set pythonthreedll=~/.pyenv/versions/3.7.7/Python.framework/Versions/3.7/Python
-set pythonthreehome=~/.pyenv/versions/3.7.7/Python.framework/Versions/3.7
+
+if has('mac')
+    set pythondll=~/.pyenv/versions/2.7.16/Python.framework/Python
+    set pythonhome=~/.pyenv/versions/2.7.16
+    set pythonthreedll=~/.pyenv/versions/3.7.7/Python.framework/Python
+    set pythonthreehome=~/.pyenv/versions/3.7.7
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> Comfortable editing
@@ -275,7 +279,11 @@ endif
 
 if has("gui_running")
     " Set a nicer font.
-    set guifont=MesloLGLNerdFontCompleteM-Regular
+    if has("mac")
+        set guifont=MesloLGLNerdFontCompleteM-Regular
+    elseif has("gui_gtk")
+        set guifont=UbuntuMono\ Nerd\ Font\ Regular\ 11
+    endif
     " Set window size
     set lines=36
     set columns=136
@@ -389,7 +397,7 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 set completeopt=menu,menuone
 let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_diagnostics_ui = 1
+let g:ycm_show_diagnostics_ui = 0
 " let g:ycm_server_log_level = 'info'
 let g:ycm_min_num_identifier_candidate_chars = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
@@ -455,6 +463,7 @@ let g:ale_linters = {
             \   'rust': ['rls'],
             \   'python': ['pylint'],
             \   'c': ['clangd'],
+            \   'go': ['gopls', 'golangci-lint', 'vet'],
             \   'cpp': ['clangd'],
             \   'sh': ['shellcheck'],
             \}
