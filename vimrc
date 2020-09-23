@@ -10,11 +10,7 @@ call plug#begin('~/.vim/bundle')
 
 " General dev
 Plug 'w0rp/ale' " general linter
-Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --clang-completer --go-completer' } " general completer
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-" Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
-" Plug 'liuchengxu/vista.vim',
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " file explorer
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInstall coc-jedi coc-go coc-clangd coc-sh coc-json coc-html coc-xml coc-css' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode'
@@ -25,10 +21,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
 Plug 'Chiel92/vim-autoformat'
-" Plug 'junegunn/vim-easy-align' " too difficult to use!
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " Ctrl-P search
 Plug 'Yggdroot/indentLine', { 'for': ['python', 'markdown', 'html', 'sh'] }
 Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
+" Plug 'junegunn/vim-easy-align' " too difficult to use!
+" Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
+" Plug 'liuchengxu/vista.vim',
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " file explorer
 
 " Languages
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries'}
@@ -75,6 +74,8 @@ set autoread
 " Set updatetime, when cursor stay still for 'updatetime', CursorHold is
 " triggered
 set updatetime=1000
+
+set statusline^=%{coc#status()}
 
 " Disable Ctrl-xxx messed-up keys
 noremap <ESC>[1;5A <NOP>
@@ -388,40 +389,6 @@ if !isdirectory(s:vim_tags)
 endif
 let g:gutentags_define_advanced_commands = 1
 
-"""""""""""" YCM conf
-" Apply YCM FixIt
-map <F9> :YcmCompleter FixIt<CR>
-map <F12> :YcmCompleter GoToDefinition<CR>
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-set completeopt=menu,menuone
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_diagnostics_ui = 0
-" let g:ycm_server_log_level = 'info'
-let g:ycm_min_num_identifier_candidate_chars = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-" let g:ycm_key_invoke_completion = '<c-space>'
-
-let g:ycm_semantic_triggers =  {
-            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-            \ 'cs,lua,javascript': ['re!\w{2}'],
-            \}
-
-let g:ycm_filetype_blacklist = {
-            \ 'tagbar': 1,
-            \ 'qf': 1,
-            \ 'notes': 1,
-            \ 'markdown': 1,
-            \ 'unite': 1,
-            \ 'text': 1,
-            \ 'vimwiki': 1,
-            \ 'pandoc': 1,
-            \ 'infolog': 1,
-            \ 'mail': 1
-            \}
-
-
 
 """""""""""" ALE linters
 let g:ale_completion_enabled = 0
@@ -522,8 +489,6 @@ let airline#extensions#c_like_langs = ['c', 'cpp', 'cuda', 'go', 'javascript', '
 au bufenter *.c :silent! call airline#extensions#whitespace#disable()
 au bufenter *.ino :silent! call airline#extensions#whitespace#disable()
 au bufenter *.md :silent! call airline#extensions#whitespace#disable()
-
-let g:airline#extensions#ycm#enabled = 1
 
 " symbols and fonts
 if !exists('g:airline_symbols')
