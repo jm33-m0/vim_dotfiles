@@ -36,3 +36,14 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs $vimplug_uri
 curl -fLo ~/.vimrc $vimrc_uri
 
 echo " vim-plug has been installed, please :PlugInstall to install other plugins"
+if command -v apt-get; then
+    echo " Install python3-venv for coc-python to work"
+    sudo apt install python3-venv -y
+fi
+if ! command -v gopls; then
+    echo " gopls not found"
+fi
+if ! command -v clangd; then
+    echo " clangd not found"
+fi
+echo " :CocInstall coc-jedi coc-go coc-clangd coc-sh coc-json coc-html coc-xml coc-css"
