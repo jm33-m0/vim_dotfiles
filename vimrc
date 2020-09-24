@@ -73,9 +73,7 @@ set autoread
 
 " Set updatetime, when cursor stay still for 'updatetime', CursorHold is
 " triggered
-set updatetime=1000
-
-set statusline^=%{coc#status()}
+set updatetime=300
 
 " Disable Ctrl-xxx messed-up keys
 noremap <ESC>[1;5A <NOP>
@@ -169,7 +167,7 @@ set ruler
 set cursorline
 
 " Height of the command bar
-set cmdheight=1
+set cmdheight=2
 
 " A buffer becomes hidden when it is abandoned
 set hid
@@ -361,9 +359,6 @@ set wrap "Wrap lines
 """"""""""""""""""""""""""""""
 " Always show the status line
 set laststatus=2
-" Height of the command bar
-set cmdheight=1
-
 
 """"""""""""""""""""""""""""""
 " ==>> Plugs
@@ -540,30 +535,6 @@ let g:go_doc_popup_window = 1
 
 nmap <leader>gr :GoReferrers<cr>
 
-"""""""""""""""""" Tagbar
-" nmap <C-b> :TagbarToggle<CR>
-" nmap <C-b> :Vista!!<CR>
-" let g:vista#renderer#enable_icon = 0
-
-"""""""""""""""""" vim-visual-multi
-let g:VM_maps = {}
-let g:VM_maps['Find Under']         = '<C-z>'           " replace C-n
-let g:VM_maps['Find Subword Under'] = '<C-z>'           " replace visual C-n
-
-
-"""""""""""""""""" NerdTree
-
-" Auto starts NerdTREE
-" autocmd vimenter * NERDTree
-
-" Toggle NerdTREE
-" map <C-z> :NERDTreeToggle<CR>
-" map <C-z> :Vexplore<CR>
-
-
-" How can I close vim if the only window left open is a NERDTree?
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 """""""""""""""""" vim-snippets
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-k>"
@@ -585,17 +556,6 @@ let g:vim_markdown_conceal_code_blocks = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " TextEdit might fail if hidden is not set.
 set hidden
-
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
-
-" Give more space for displaying messages.
-set cmdheight=2
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
