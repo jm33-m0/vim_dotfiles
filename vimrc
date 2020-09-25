@@ -281,7 +281,7 @@ if has("gui_running")
     if has("mac")
         set guifont=MesloLGLNerdFontCompleteM-Regular
     elseif has("gui_gtk")
-        set guifont=UbuntuMono\ Nerd\ Font\ Regular\ 11
+        set guifont=UbuntuMono\ Nerd\ Font\ Regular\ 12
     endif
     " Set window size
     set lines=36
@@ -628,8 +628,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
     autocmd!
@@ -645,9 +645,9 @@ xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
+" nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+" nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
