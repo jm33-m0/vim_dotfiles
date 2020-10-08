@@ -8,46 +8,48 @@
 set nocompatible              " be iMproved, required
 call plug#begin('~/.vim/bundle')
 
-" General dev
+" Primary
 Plug 'w0rp/ale' " general linter
-Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInstall coc-jedi coc-vimlsp coc-go coc-clangd coc-sh coc-json coc-html coc-xml coc-css' }
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
-Plug 'dhruvasagar/vim-table-mode'
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInstall coc-jedi coc-vimlsp coc-go coc-clangd coc-sh coc-json coc-html coc-xml coc-css' } " language specific plugins
 Plug 'tomtom/tcomment_vim'
+Plug 'Chiel92/vim-autoformat'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-repeat'
-Plug 'Chiel92/vim-autoformat'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " Ctrl-P search
-Plug 'Yggdroot/indentLine', { 'for': ['python', 'markdown', 'html', 'sh'] }
-Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
-" Plug 'junegunn/vim-easy-align' " too difficult to use!
-" Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
-" Plug 'liuchengxu/vista.vim',
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " file explorer
-
-" Languages
-Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries'}
-Plug 'vim-python/python-syntax', { 'for': 'python' }
-Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
-Plug 'godlygeek/tabular', { 'for': 'markdown' }
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
-Plug 'ferrine/md-img-paste.vim', { 'for': 'markdown' }
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
-" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-" Plug 'chazy/cscope_maps', { 'for': 'c' }
 
 " Appearance
 Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
+Plug 'Yggdroot/indentLine', { 'for': ['python', 'markdown', 'html', 'sh'] }
+
+" Convenient
+Plug 'vim-python/python-syntax', { 'for': 'python' }
+Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
+Plug 'godlygeek/tabular', { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
+Plug 'ferrine/md-img-paste.vim', { 'for': 'markdown' }
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-repeat'
+
+" Disabled
+" Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
+" Plug 'junegunn/vim-easy-align' " too difficult to use!
+" Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
+" Plug 'liuchengxu/vista.vim',
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " file explorer
+" Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries'}
+" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+" Plug 'chazy/cscope_maps', { 'for': 'c' }
 " Plug 'takac/vim-hardtime'
 " Plug 'lambdalisue/vim-fullscreen' " for Windows
 
@@ -510,30 +512,6 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
-
-"""""""""""""""""" vim-go
-" since we have ALE enabled, vim-go doesn't have to run lint here
-" let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-let g:go_rename_command = 'gopls'
-let g:go_fmt_command = "goimports"
-let g:go_gocode_autobuild = 1
-let g:go_gocode_unimported_packages = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_methods = 1
-set autowrite
-
-" popup window for GoDoc
-let g:go_doc_popup_window = 1
-
-nmap <leader>gr :GoReferrers<cr>
 
 """""""""""""""""" vim-snippets
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
