@@ -217,10 +217,13 @@ set foldnestmax=10
 set foldmethod=syntax
 
 " copy and paste
-noremap <Leader>y "*y
-noremap <Leader>p "*p
-noremap <Leader>Y "+y
-noremap <Leader>P "+p
+if has('linux')
+    noremap <Leader>y "+y
+    noremap <Leader>p "+p
+else
+    noremap <Leader>y "*y
+    noremap <Leader>p "*p
+endif
 if has('win32')
     set clipboard=unnamed
     " else
