@@ -11,12 +11,9 @@ call plug#begin('~/.vim/bundle')
 " Primary
 Plug 'w0rp/ale' " general linter
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInstall coc-jedi coc-vimlsp coc-go coc-clangd coc-sh coc-json coc-html coc-xml coc-css' } " language specific plugins
-Plug 'tomtom/tcomment_vim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " Ctrl-P search
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
@@ -29,8 +26,9 @@ Plug 'mhinz/vim-startify'
 Plug 'Yggdroot/indentLine', { 'for': ['python', 'markdown', 'html', 'sh'] }
 
 " Convenient
-Plug 'vim-python/python-syntax', { 'for': 'python' }
-Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
+Plug 'tomtom/tcomment_vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular', { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
@@ -41,6 +39,8 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
 
 " Disabled
+" Plug 'vim-python/python-syntax', { 'for': 'python' }
+" Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
 " Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
 " Plug 'junegunn/vim-easy-align' " too difficult to use!
 " Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
