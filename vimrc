@@ -10,7 +10,7 @@ call plug#begin('~/.vim/bundle')
 
 " Primary
 Plug 'w0rp/ale' " general linter
-Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInstall coc-jedi coc-vimlsp coc-go coc-clangd coc-sh coc-json coc-html coc-xml coc-css' } " language specific plugins
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInstall coc-python coc-vimlsp coc-go coc-clangd coc-sh coc-json coc-html coc-xml coc-css' } " language specific plugins
 Plug 'Chiel92/vim-autoformat'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
