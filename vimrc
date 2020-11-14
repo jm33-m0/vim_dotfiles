@@ -19,6 +19,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 
 " Appearance
+Plug 'vim-python/python-syntax', { 'for': 'python' }
 Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -39,7 +40,6 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
 
 " Disabled
-" Plug 'vim-python/python-syntax', { 'for': 'python' }
 " Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
 " Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
 " Plug 'junegunn/vim-easy-align' " too difficult to use!
