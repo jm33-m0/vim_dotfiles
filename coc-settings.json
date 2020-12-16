@@ -1,3 +1,4 @@
 {
-    "python.jediEnabled": false
+    "python.jediEnabled": false,
+    "html.autoClosingTags": true
 }
