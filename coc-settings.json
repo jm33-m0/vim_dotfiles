@@ -1,4 +1,6 @@
 {
     "python.jediEnabled": false,
-    "html.autoClosingTags": true
+    "go.goplsOptions": {
+        "completeUnimported": true
+    }
 }

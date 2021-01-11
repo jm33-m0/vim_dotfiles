@@ -11,6 +11,7 @@ call plug#begin('~/.vim/bundle')
 " Primary
 Plug 'w0rp/ale' " general linter
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInstall coc-python coc-vimlsp coc-go coc-clangd coc-sh coc-json coc-html coc-xml coc-css' } " language specific plugins
+Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries'}
 Plug 'Chiel92/vim-autoformat'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -46,7 +47,6 @@ Plug 'tpope/vim-repeat'
 " Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' } " tag list
 " Plug 'liuchengxu/vista.vim',
 " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " file explorer
-" Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries'}
 " Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 " Plug 'chazy/cscope_maps', { 'for': 'c' }
@@ -257,6 +257,7 @@ autocmd BufEnter * :syntax sync fromstart " syntax highlighting breaks when pagi
 " python-syntax
 let g:python_highlight_all = 1
 
+" colors
 let g:rehash256 = 1
 let g:molokai_original = 1
 set background=dark
@@ -325,8 +326,6 @@ highlight Search cterm=NONE ctermfg=grey ctermbg=black guibg=#2a241a guifg=#8a8a
 " highlight CursorColumn ctermbg=234 guibg=#d0d0d0
 " highlight CursorLine ctermbg=234 guibg=#d0d0d0
 
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -334,8 +333,6 @@ highlight Search cterm=NONE ctermfg=grey ctermbg=black guibg=#2a241a guifg=#8a8a
 set nobackup
 set nowb
 set noswapfile
-
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> Text, tab and indent related
@@ -357,8 +354,6 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
-
-
 """"""""""""""""""""""""""""""
 " ==>> Status line
 """"""""""""""""""""""""""""""
@@ -369,12 +364,16 @@ set laststatus=2
 " ==>> Plugs
 """"""""""""""""""""""""""""""
 
-"""""""""""" gtags
+""""""""""""""""""""""""""""""
+" ==>> Gtags
+""""""""""""""""""""""""""""""
 set cscopeprg='gtags-cscope'
 let $GTAGSLABEL = 'native-pygments'
 let $GTAGSCONF = expand('~/.vim/gtags.conf')
 
-"""""""""""" vim-gutentags
+""""""""""""""""""""""""""""""
+" ==>> vim-gutentags
+""""""""""""""""""""""""""""""
 let g:gutentags_modules = ['gtags_cscope']
 " let g:gutentags_modules = ['ctags']
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
@@ -390,7 +389,9 @@ endif
 let g:gutentags_define_advanced_commands = 1
 
 
-"""""""""""" ALE linters
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==>> ALE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_completion_enabled = 0
 let g:ale_open_list = 0
 let g:ale_set_loclist = 0
@@ -446,12 +447,16 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " let g:ale_set_quickfix = 1
 " let g:ale_keep_list_window_open = 1
 
-"""""""" IndentLine
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==>> IndentLine
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:indentLine_enabled = 1
 let g:indentLine_char = '▏'
 " let g:indentLine_setColors = 0
 
-"""""""" LeaderF
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==>> Leaderf
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:Lf_ShortcutF = '<c-p>'
 let g:Lf_ShortcutB = '<c-n>'
 let g:Lf_RgConfig = [
@@ -475,7 +480,9 @@ let g:Lf_HideHelp = 1
 let g:Lf_StlColorscheme = 'powerline'
 let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
 
-"""""""" Vim-Airline Configuration
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==>> Vim-Airline Configuration
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline_theme = 'minimalist'
 " let g:airline_powerline_fonts = 0
 " let g:airline_theme = 'dark'
@@ -516,21 +523,50 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
 
-"""""""""""""""""" vim-snippets
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==>> vim-snippets
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-"""""""""""""""""" vim-autoformat
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==>> vim-autoformat
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au BufWrite * :silent Autoformat
 let g:autoformat_autoindent = 0
 " :silent! execute !autopep8 --in-place --aggressive --aggressive %" | redraw!
 
-"""""""""""""""""" vim-markdown
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==>> vim-markdown
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:vim_markdown_toc_autofit = 1
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==>> vim-go
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" since we have ALE enabled, vim-go doesn't have to run lint here
+" let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_rename_command = 'gopls'
+let g:go_fmt_command = "goimports"
+let g:go_gocode_autobuild = 1
+let g:go_gocode_unimported_packages = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_format_strings = 1
+let g:go_highlight_methods = 1
+set autowrite
+" popup window for GoDoc
+let g:go_doc_popup_window = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> COC.VIM example vimrc
@@ -679,4 +715,5 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " Add missing imports on save
-autocmd BufWritePre * :silent call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.py :silent call CocAction('runCommand', 'editor.action.organizeImport')
