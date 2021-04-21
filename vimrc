@@ -209,6 +209,9 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
+if has('autocmd')
+    autocmd GUIEnter * set visualbell t_vb=
+endif
 
 " Add a bit extra margin to the left
 set foldcolumn=1
