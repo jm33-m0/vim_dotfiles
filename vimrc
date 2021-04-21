@@ -290,6 +290,8 @@ if has("gui_running")
         set guifont=MesloLGLNerdFontCompleteM-Regular
     elseif has("gui_gtk")
         set guifont=UbuntuMono\ Nerd\ Font\ Regular\ 12
+    else
+        set guifont=DroidSansMono\ NF:h12
     endif
     " Set window size
     set lines=36
