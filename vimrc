@@ -28,18 +28,20 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
 Plug 'Yggdroot/indentLine', { 'for': ['python', 'markdown', 'html', 'sh'] }
 
-" Convenient
+" Convenience
 Plug 'tomtom/tcomment_vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'godlygeek/tabular', { 'for': 'markdown' }
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
-Plug 'ferrine/md-img-paste.vim', { 'for': 'markdown' }
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
+
+" Markdown
+Plug 'godlygeek/tabular', { 'for': 'markdown' }
+Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
+Plug 'ferrine/md-img-paste.vim', { 'for': 'markdown' }
+" Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
 " Disabled
 " Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
