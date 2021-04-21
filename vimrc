@@ -41,7 +41,7 @@ Plug 'tpope/vim-repeat'
 Plug 'godlygeek/tabular', { 'for': 'markdown' }
 Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
 Plug 'ferrine/md-img-paste.vim', { 'for': 'markdown' }
-" Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 
 " Disabled
 " Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
@@ -545,9 +545,11 @@ let g:autoformat_autoindent = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> vim-markdown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:vim_markdown_toc_autofit = 1
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_conceal_code_blocks = 0
+" let g:vim_markdown_toc_autofit = 1
+" let g:vim_markdown_conceal = 0
+" let g:vim_markdown_conceal_code_blocks = 0
+let g:markdown_syntax_conceal = 0
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'go', 'c']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> vim-go
