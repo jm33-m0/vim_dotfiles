@@ -10,8 +10,9 @@ call plug#begin('~/.vim/bundle')
 
 " Primary
 Plug 'w0rp/ale', { 'for': ['sh', 'rust'] } " general linter
-Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInstall coc-python coc-vimlsp coc-eslint coc-go coc-clangd coc-sh coc-json coc-yaml coc-tsserver coc-html coc-xml coc-css' } " language specific plugins
-Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries'}
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInstall coc-python coc-vimlsp coc-eslint coc-clangd coc-sh coc-json coc-yaml coc-tsserver coc-html coc-xml coc-css' } " language specific plugins
+Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries'}
+" Plug 'govim/govim', { 'for': 'go' }
 Plug 'Chiel92/vim-autoformat'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -399,56 +400,56 @@ let g:gutentags_define_advanced_commands = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> ALE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ale_completion_enabled = 0
-let g:ale_open_list = 0
-let g:ale_set_loclist = 0
-let g:ale_lint_on_enter = 1
-" let g:ale_rust_rls_toolchain = 'stable'
-
-" better error sign
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '⚠'
-highlight ALEErrorSign ctermbg=NONE ctermfg=red
-highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-
-" parse Makefile, to recognize include path
-let g:ale_c_parse_makefile = 1
-let g:ale_c_parse_compile_commands = 1
-
-let g:ale_linters_explicit = 1
-let g:ale_completion_delay = 500
-let g:ale_echo_delay = 20
-let g:ale_lint_delay = 500
-let g:ale_echo_msg_format = '[%linter%] %code: %%s'
-let g:ale_lint_on_insert_leave = 1
-let g:airline#extensions#ale#enabled = 1
-
-" let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
-" let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
-let g:ale_c_cppcheck_options = ''
-let g:ale_cpp_cppcheck_options = ''
-
-" do NOT enable-all go linters
-let g:ale_go_golangci_lint_options = '-E unparam -E goconst -E gofmt'
-" package level please
-let g:ale_go_golangci_lint_package = 1
-
-let g:ale_linters = {
-            \   'javascript': ['eslint'],
-            \   'rust': ['rls'],
-            \   'python': ['pylint'],
-            \   'c': ['clangd'],
-            \   'go': ['gopls', 'golangci-lint', 'vet'],
-            \   'cpp': ['clangd'],
-            \   'sh': ['shellcheck'],
-            \}
-
-let g:ale_fixers = {
-            \   'python': ['isort', 'add_blank_lines_for_python_control_statements'],
-            \}
-
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+" let g:ale_completion_enabled = 0
+" let g:ale_open_list = 0
+" let g:ale_set_loclist = 0
+" let g:ale_lint_on_enter = 1
+" " let g:ale_rust_rls_toolchain = 'stable'
+"
+" " better error sign
+" let g:ale_sign_error = '✘'
+" let g:ale_sign_warning = '⚠'
+" highlight ALEErrorSign ctermbg=NONE ctermfg=red
+" highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+"
+" " parse Makefile, to recognize include path
+" let g:ale_c_parse_makefile = 1
+" let g:ale_c_parse_compile_commands = 1
+"
+" let g:ale_linters_explicit = 1
+" let g:ale_completion_delay = 500
+" let g:ale_echo_delay = 20
+" let g:ale_lint_delay = 500
+" let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+" let g:ale_lint_on_insert_leave = 1
+" let g:airline#extensions#ale#enabled = 1
+"
+" " let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+" " let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+" let g:ale_c_cppcheck_options = ''
+" let g:ale_cpp_cppcheck_options = ''
+"
+" " do NOT enable-all go linters
+" let g:ale_go_golangci_lint_options = '-E unparam -E goconst -E gofmt'
+" " package level please
+" let g:ale_go_golangci_lint_package = 1
+"
+" let g:ale_linters = {
+"             \   'javascript': ['eslint'],
+"             \   'rust': ['rls'],
+"             \   'python': ['pylint'],
+"             \   'c': ['clangd'],
+"             \   'go': ['gopls', 'golangci-lint', 'vet'],
+"             \   'cpp': ['clangd'],
+"             \   'sh': ['shellcheck'],
+"             \}
+"
+" let g:ale_fixers = {
+"             \   'python': ['isort', 'add_blank_lines_for_python_control_statements'],
+"             \}
+"
+" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+" nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " if linter got annoying, you can set the frq to normal
 " let g:ale_lint_on_text_changed = 'normal'
 " let g:ale_set_quickfix = 1
@@ -551,16 +552,18 @@ let g:autoformat_autoindent = 0
 " let g:vim_markdown_toc_autofit = 1
 " let g:vim_markdown_conceal = 0
 " let g:vim_markdown_conceal_code_blocks = 0
-let g:markdown_syntax_conceal = 0
-let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'go', 'c']
+" let g:markdown_syntax_conceal = 0
+" let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'go', 'c']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> vim-go
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" since we have ALE enabled, vim-go doesn't have to run lint here
-" let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_command = 'golangci-lint'
 let g:go_rename_command = 'gopls'
-let g:go_fmt_command = "goimports"
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+let g:go_fmt_command = 'gopls'
+let g:go_doc_keywordprg_enabled = 0
 let g:go_gocode_autobuild = 1
 let g:go_gocode_unimported_packages = 1
 let g:go_highlight_operators = 1
@@ -576,6 +579,67 @@ let g:go_highlight_methods = 1
 set autowrite
 " popup window for GoDoc
 let g:go_doc_popup_window = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==>> govim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" This file represents the minimal .vimrc needed to work with govim.
+"
+" We also include a number of suggested settings that we think the majority of
+" users will like/prefer.
+
+" To get hover working in the terminal we need to set ttymouse. See
+"
+" :help ttymouse
+"
+" for the appropriate setting for your terminal. Note that despite the
+" automated tests using xterm as the terminal, a setting of ttymouse=xterm
+" does not work correctly beyond a certain column number (citation needed)
+" hence we use ttymouse=sgr
+set ttymouse=sgr
+
+" Suggestion: By default, govim populates the quickfix window with diagnostics
+" reported by gopls after a period of inactivity, the time period being
+" defined by updatetime (help updatetime). Here we suggest a short updatetime
+" time in order that govim/Vim are more responsive/IDE-like
+set updatetime=500
+
+" Suggestion: To make govim/Vim more responsive/IDE-like, we suggest a short
+" balloondelay
+set balloondelay=250
+
+" Suggestion: Turn on the sign column so you can see error marks on lines
+" where there are quickfix errors. Some users who already show line number
+" might prefer to instead have the signs shown in the number column; in which
+" case set signcolumn=number
+set signcolumn=yes
+
+" Suggestion: Turn on syntax highlighting for .go files. You might prefer to
+" turn on syntax highlighting for all files, in which case
+"
+" syntax on
+"
+" will suffice, no autocmd required.
+" autocmd! BufEnter,BufNewFile *.go,go.mod syntax on
+" autocmd! BufLeave *.go,go.mod syntax off
+
+" Suggestion: turn on auto-indenting. If you want closing parentheses, braces
+" etc to be added, https://github.com/jiangmiao/auto-pairs. In future we might
+" include this by default in govim.
+set autoindent
+set smartindent
+
+" Suggestion: define sensible backspace behaviour. See :help backspace for
+" more details
+set backspace=2
+
+" Suggestion: show info for completion candidates in a popup menu
+if has("patch-8.1.1904")
+  set completeopt+=popup
+  set completepopup=align:menu,border:off,highlight:Pmenu
+endif
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> COC.VIM example vimrc
@@ -724,5 +788,5 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " Add missing imports on save
-autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+" autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 autocmd BufWritePre *.py :silent call CocAction('runCommand', 'editor.action.organizeImport')
