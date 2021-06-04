@@ -16,6 +16,7 @@ full)
         mkdir ~/sh
         cp sh/cpu_usage-linux ~/sh/cpu_usage
         cp sh/mem_usage-linux ~/sh/mem_usage
+        cp sh/uptime ~/sh/uptime
     else
         cp -r sh ~
     fi
