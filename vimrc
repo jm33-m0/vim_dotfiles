@@ -10,7 +10,7 @@ call plug#begin('~/.vim/bundle')
 
 " Primary
 Plug 'w0rp/ale', { 'for': ['sh', 'rust'] } " general linter
-Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInstall coc-python coc-vimlsp coc-eslint coc-clangd coc-sh coc-json coc-yaml coc-tsserver coc-html coc-xml coc-css' } " language specific plugins
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInstall coc-pyright coc-vimlsp coc-eslint coc-clangd coc-sh coc-json coc-yaml coc-tsserver coc-html coc-xml coc-css' } " language specific plugins
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries'}
 " Plug 'govim/govim', { 'for': 'go' }
 Plug 'Chiel92/vim-autoformat'
@@ -566,6 +566,7 @@ let g:go_fmt_command = 'gopls'
 let g:go_doc_keywordprg_enabled = 0
 let g:go_gocode_autobuild = 1
 let g:go_gocode_unimported_packages = 1
+let g:go_go_code_completion_enabled = 0
 let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
@@ -759,10 +760,10 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 command! -nargs=0 Format :call CocAction('format')
 
 " Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that

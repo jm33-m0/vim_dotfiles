@@ -9,6 +9,6 @@
             }
         }
     },
-    "python.jediEnabled": false,
+    "python.venvPath": ".venv",
     "eslint.run": "onSave"
 }
