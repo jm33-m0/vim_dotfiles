@@ -594,6 +594,15 @@ if executable('pyls')
                 \ })
 endif
 
+if executable('gopls')
+    " vim-go will take care of installation
+    au User lsp_setup call lsp#register_server({
+                \ 'name': 'gopls',
+                \ 'cmd': {server_info->['gopls']},
+                \ 'allowlist': ['gopls'],
+                \ })
+endif
+
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
@@ -622,3 +631,6 @@ augroup lsp_install
     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+
+" disable diagnostics
+let g:lsp_diagnostics_enabled = 0
