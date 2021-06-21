@@ -8,10 +8,10 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=HOME/.dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=/home/USERNAME/.dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-call dein#begin('HOME/.dein')
+call dein#begin('/home/USERNAME/.dein')
 
 " Let dein manage dein
 " Required:
