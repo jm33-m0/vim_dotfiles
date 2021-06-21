@@ -15,7 +15,7 @@ call dein#begin('/home/USERNAME/.dein')
 
 " Let dein manage dein
 " Required:
-call dein#add('HOME/.dein/repos/github.com/Shougo/dein.vim')
+call dein#add('/home/USERNAME/.dein/repos/github.com/Shougo/dein.vim')
 
 " dein
 call dein#add('wsdjeg/dein-ui.vim')
