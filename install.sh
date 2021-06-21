@@ -8,7 +8,7 @@ fi
 case "$1" in
 full)
     vimrc_uri="https://github.com/jm33-m0/vim_dotfiles/raw/master/vimrc"
-    curl 'https://github.com/jm33-m0/vim_dotfiles/raw/master/.tmux.conf' -o ~/.tmux.conf
+    cp ./.tmux.conf ~/.tmux.conf
     if ! command -v tmux; then
         echo " tmux not found, please install it"
     fi
@@ -16,6 +16,7 @@ full)
         mkdir ~/sh
         cp sh/cpu_usage-linux ~/sh/cpu_usage
         cp sh/mem_usage-linux ~/sh/mem_usage
+        cp sh/uptime ~/sh/uptime
     else
         cp -r sh ~
     fi
