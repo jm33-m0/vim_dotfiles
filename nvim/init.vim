@@ -8,14 +8,14 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/home/jm33/.dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=HOME/.dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-call dein#begin('/home/jm33/.dein')
+call dein#begin('HOME/.dein')
 
 " Let dein manage dein
 " Required:
-call dein#add('/home/jm33/.dein/repos/github.com/Shougo/dein.vim')
+call dein#add('HOME/.dein/repos/github.com/Shougo/dein.vim')
 
 " dein
 call dein#add('wsdjeg/dein-ui.vim')
@@ -294,25 +294,6 @@ endtry
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
     set mouse=a
-endif
-
-if has("gui_running")
-    " Set a nicer font.
-    if has("mac")
-        set guifont=MesloLGLNerdFontCompleteM-Regular
-    elseif has("gui_gtk")
-        set guifont=UbuntuMono\ Nerd\ Font\ Regular\ 12
-    else
-        set guifont=DroidSansMono\ NF:h12
-    endif
-    " Set window size
-    set lines=36
-    set columns=136
-    " Hide the toolbar.
-    set guioptions-=m  "remove menu bar
-    set guioptions-=T  "remove toolbar
-    set guioptions-=r  "remove right-hand scroll bar
-    set guioptions-=L  "remove left-hand scroll bar
 endif
 
 let base16colorspace=256
