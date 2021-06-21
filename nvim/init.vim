@@ -40,7 +40,7 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-vinegar')
 call dein#add('tpope/vim-repeat')
 
-" autocomplete
+" Autocomplete
 call dein#add('Shougo/deoplete.nvim')
 if !has('nvim')
     call dein#add('roxma/nvim-yarp')
@@ -50,16 +50,19 @@ let g:deoplete#enable_at_startup = 1
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('ncm2/float-preview.nvim') " preview in floating window
-" tabnine
-if has('win32') || has('win64')
-    call dein#add('tbodt/deoplete-tabnine', { 'build': 'powershell.exe .\install.ps1' })
-else
-    call dein#add('tbodt/deoplete-tabnine', { 'build': './install.sh' })
-endif
+" " tabnine
+" if has('win32') || has('win64')
+"     call dein#add('tbodt/deoplete-tabnine', { 'build': 'powershell.exe .\install.ps1' })
+" else
+"     call dein#add('tbodt/deoplete-tabnine', { 'build': './install.sh' })
+" endif
 
-" Dev
+" Golang
 call dein#add('fatih/vim-go', {'on_ft': 'go'})
-call dein#add('deoplete-plugins/deoplete-jedi', {'on_ft': 'python'})
+" LSP, for other languages
+call dein#add('prabirshrestha/vim-lsp')
+call dein#add('mattn/vim-lsp-settings')
+call dein#add('lighttiger2505/deoplete-vim-lsp')
 
 " Markdown
 call dein#add('godlygeek/tabular', {'on_ft': 'markdown'})
@@ -413,17 +416,21 @@ let g:ale_lint_on_text_changed = 'normal'
 let g:ale_set_quickfix = 1
 let g:ale_keep_list_window_open = 1
 
-" Complete unimported
-let g:ale_completion_autoimport = 1
+" " Complete unimported
+" let g:ale_completion_autoimport = 1
 
+" disable LSP in favor of vim-lsp
+let g:ale_disable_lsp = 1
+
+" addition to autoformat
 let g:ale_fix_on_save = 1
 
 " Key bindings
-" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-nmap <silent> <C-]> :ALEGoToDefinition<cr>
-nmap <silent> <C-[> :ALEFindReferences<cr>
-noremap <leader>d :ALEHover<cr>
+" nmap <silent> <C-]> :ALEGoToDefinition<cr>
+" nmap <silent> <C-[> :ALEFindReferences<cr>
+" noremap <leader>d :ALEHover<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> IndentLine
@@ -510,12 +517,7 @@ call deoplete#custom#var('tabnine', {
             \ 'line_limit': 500,
             \ 'max_num_results': 10,
             \ })
-" " sources
-" " Use ALE and also some plugin 'foobar' as completion sources for all code.
-" call deoplete#custom#option('sources', {
-"             \ '_': ['ale', 'tabnine', 'vim-go'],
-"             \})
-"
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> neosnippets
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -583,3 +585,40 @@ nmap <leader>rn :GoRename<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> vim-lsp
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if executable('pyls')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+                \ 'name': 'pyls',
+                \ 'cmd': {server_info->['pyls']},
+                \ 'allowlist': ['python'],
+                \ })
+endif
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    inoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    inoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+
+    " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
