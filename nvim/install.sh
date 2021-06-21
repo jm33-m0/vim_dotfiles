@@ -15,4 +15,4 @@ sh ./installer.sh ~/.dein
 # install init.vim
 [[ -d ~/.config/nvim ]] || mkdir -p ~/.config/nvim
 cp -av ./init.vim ~/.config/nvim
-sed -i 's/USERNAME/'"$USER/g" ~/.config/nvim/init.nvim
+sed -i 's/USERNAME/'"$USER/g" ~/.config/nvim/init.vim
