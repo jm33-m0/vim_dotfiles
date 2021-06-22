@@ -6,7 +6,8 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 $nvimrc = "$env:LOCALAPPDATA\nvim\init.vim"
 $gnvimrc = "$env:LOCALAPPDATA\nvim\ginit.vim"
-Copy-Item -Path .\win\init.vim -Destination $nvimrc -Force
+Copy-Item -Path .\init.vim -Destination $nvimrc -Force
 Copy-Item -Path .\win\ginit.vim -Destination $gnvimrc -Force
 Write-Host "Add required config to $nvimrc"
+Write-Host "And :call dein#install()"
 notepad.exe $nvimrc

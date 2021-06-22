@@ -7,16 +7,6 @@ if &compatible
     set nocompatible               " Be iMproved
 endif
 
-" Required:
-set runtimepath+=/home/USERNAME/.dein/repos/github.com/Shougo/dein.vim
-
-" Required:
-call dein#begin('/home/USERNAME/.dein')
-
-" Let dein manage dein
-" Required:
-call dein#add('/home/USERNAME/.dein/repos/github.com/Shougo/dein.vim')
-
 " dein
 call dein#add('wsdjeg/dein-ui.vim')
 call dein#add('haya14busa/dein-command.vim')
@@ -577,10 +567,11 @@ let g:go_doc_popup_window = 1
 " let deoplete autocomplete golang
 " call deoplete#custom#option('omni_patterns', {'go': '[^. *\t]\.\w*'})
 
-" key bindings
-nmap <leader>gr :GoReferrers<cr>
-" nmap <leader>d :GoDoc<cr>
-nmap <leader>rn :GoRename<cr>
+" Disabled in favor of vim-lsp
+" " key bindings
+" nmap <leader>gr :GoReferrers<cr>
+" " nmap <leader>d :GoDoc<cr>
+" nmap <leader>rn :GoRename<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> vim-lsp

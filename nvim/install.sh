@@ -15,4 +15,5 @@ sh ./installer.sh ~/.dein
 # install init.vim
 [[ -d ~/.config/nvim ]] || mkdir -p ~/.config/nvim
 cp -av ./init.vim ~/.config/nvim
-sed -i 's/USERNAME/'"$USER/g" ~/.config/nvim/init.vim
+echo -e "\n\nRemember to add required config to ~/.config/nvim/init.vim\n
+and then ':call dein#install()'"
