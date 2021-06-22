@@ -7,8 +7,6 @@ if &compatible
     set nocompatible               " Be iMproved
 endif
 
-" ADD required config here
-
 " dein
 call dein#add('wsdjeg/dein-ui.vim')
 call dein#add('haya14busa/dein-command.vim')
@@ -512,7 +510,17 @@ call deoplete#custom#var('tabnine', {
             \ })
 let g:neopairs#enable = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use TAB to trigger autocompl
+inoremap <silent><expr> <TAB>
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> neosnippets
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin key-mappings.
