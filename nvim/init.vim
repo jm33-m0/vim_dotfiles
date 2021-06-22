@@ -621,7 +621,7 @@ function! s:on_lsp_buffer_enabled() abort
     inoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
     let g:lsp_format_sync_timeout = 1000
-    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+    " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
 
     " refer to doc to add more commands
 endfunction
@@ -632,5 +632,10 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-" disable diagnostics
-let g:lsp_diagnostics_enabled = 0
+" diagnostics
+let g:lsp_diagnostics_enabled = 0 " disable diagnostics
+let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_diagnostics_virtual_text_enabled = 0
+let g:lsp_diagnostics_highlights_enabled = 0
+let g:lsp_diagnostics_signs_error = {'text': '✗'}
+let g:lsp_diagnostics_signs_warning = {'text': '⚠'}

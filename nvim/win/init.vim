@@ -7,16 +7,6 @@ if &compatible
     set nocompatible               " Be iMproved
 endif
 
-" Required:
-set runtimepath+=C:\Users\jm33m\.dein\repos\github.com\Shougo\dein.vim
-
-" Required:
-call dein#begin('C:\Users\jm33m\.dein')
-
-" Let dein manage dein
-" Required:
-call dein#add('C:\Users\jm33m\.dein\repos\github.com\Shougo\dein.vim')
-
 " dein
 call dein#add('wsdjeg/dein-ui.vim')
 call dein#add('haya14busa/dein-command.vim')
@@ -24,7 +14,7 @@ call dein#add('haya14busa/dein-command.vim')
 " Generic plugins
 call dein#add('w0rp/ale') " lint everything
 call dein#add('Chiel92/vim-autoformat') " format everything
-call dein#add('Yggdroot/LeaderF', {'build': './install.bat'}) " search and stuff
+call dein#add('Yggdroot/LeaderF', {'build': './install.sh'}) " search and stuff
 call dein#add('flazz/vim-colorschemes') " add more themes
 call dein#add('vim-airline/vim-airline') " status line
 call dein#add('vim-airline/vim-airline-themes') " themes for status line
@@ -40,7 +30,7 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-vinegar')
 call dein#add('tpope/vim-repeat')
 
-" autocomplete
+" Autocomplete
 call dein#add('Shougo/deoplete.nvim')
 if !has('nvim')
     call dein#add('roxma/nvim-yarp')
@@ -50,16 +40,19 @@ let g:deoplete#enable_at_startup = 1
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('ncm2/float-preview.nvim') " preview in floating window
-" tabnine
-if has('win32') || has('win64')
-    call dein#add('tbodt/deoplete-tabnine', { 'build': 'powershell.exe .\install.ps1' })
-else
-    call dein#add('tbodt/deoplete-tabnine', { 'build': './install.sh' })
-endif
+" " tabnine
+" if has('win32') || has('win64')
+"     call dein#add('tbodt/deoplete-tabnine', { 'build': 'powershell.exe .\install.ps1' })
+" else
+"     call dein#add('tbodt/deoplete-tabnine', { 'build': './install.sh' })
+" endif
 
-" Dev
+" Golang
 call dein#add('fatih/vim-go', {'on_ft': 'go'})
-call dein#add('deoplete-plugins/deoplete-jedi', {'on_ft': 'python'})
+" LSP, for other languages
+call dein#add('prabirshrestha/vim-lsp')
+call dein#add('mattn/vim-lsp-settings')
+call dein#add('lighttiger2505/deoplete-vim-lsp')
 
 " Markdown
 call dein#add('godlygeek/tabular', {'on_ft': 'markdown'})
@@ -296,32 +289,6 @@ if has('mouse')
     set mouse=a
 endif
 
-" Set Editor Font
-if exists(':GuiFont')
-    " Use GuiFont! to ignore font errors
-    GuiFont DroidSansMono NF:h12
-endif
-
-" Disable GUI Tabline
-if exists(':GuiTabline')
-    GuiTabline 0
-endif
-
-" Disable GUI Popupmenu
-if exists(':GuiPopupmenu')
-    GuiPopupmenu 0
-endif
-
-" Enable GUI ScrollBar
-if exists(':GuiScrollBar')
-    GuiScrollBar 1
-endif
-
-" Right Click Context Menu (Copy-Cut-Paste)
-nnoremap <silent><RightMouse> :call GuiShowContextMenu()<CR>
-inoremap <silent><RightMouse> <Esc>:call GuiShowContextMenu()<CR>
-vnoremap <silent><RightMouse> :call GuiShowContextMenu()<CR>gv
-
 let base16colorspace=256
 if (has("termguicolors"))
     set termguicolors
@@ -439,17 +406,21 @@ let g:ale_lint_on_text_changed = 'normal'
 let g:ale_set_quickfix = 1
 let g:ale_keep_list_window_open = 1
 
-" Complete unimported
-let g:ale_completion_autoimport = 1
+" " Complete unimported
+" let g:ale_completion_autoimport = 1
 
+" disable LSP in favor of vim-lsp
+let g:ale_disable_lsp = 1
+
+" addition to autoformat
 let g:ale_fix_on_save = 1
 
 " Key bindings
-" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-nmap <silent> <C-]> :ALEGoToDefinition<cr>
-nmap <silent> <C-[> :ALEFindReferences<cr>
-noremap <leader>d :ALEHover<cr>
+" nmap <silent> <C-]> :ALEGoToDefinition<cr>
+" nmap <silent> <C-[> :ALEFindReferences<cr>
+" noremap <leader>d :ALEHover<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> IndentLine
@@ -536,12 +507,7 @@ call deoplete#custom#var('tabnine', {
             \ 'line_limit': 500,
             \ 'max_num_results': 10,
             \ })
-" " sources
-" " Use ALE and also some plugin 'foobar' as completion sources for all code.
-" call deoplete#custom#option('sources', {
-"             \ '_': ['ale', 'tabnine', 'vim-go'],
-"             \})
-"
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> neosnippets
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -609,3 +575,57 @@ nmap <leader>rn :GoRename<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> vim-lsp
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if executable('pyls')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+                \ 'name': 'pyls',
+                \ 'cmd': {server_info->['pyls']},
+                \ 'allowlist': ['python'],
+                \ })
+endif
+
+if executable('gopls')
+    " vim-go will take care of installation
+    au User lsp_setup call lsp#register_server({
+                \ 'name': 'gopls',
+                \ 'cmd': {server_info->['gopls']},
+                \ 'allowlist': ['gopls'],
+                \ })
+endif
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    inoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    inoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+    let g:lsp_format_sync_timeout = 1000
+    " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+
+    " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+" diagnostics
+let g:lsp_diagnostics_enabled = 0 " disable diagnostics
+let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_diagnostics_virtual_text_enabled = 0
+let g:lsp_diagnostics_highlights_enabled = 0
+let g:lsp_diagnostics_signs_error = {'text': '✗'}
+let g:lsp_diagnostics_signs_warning = {'text': '⚠'}
