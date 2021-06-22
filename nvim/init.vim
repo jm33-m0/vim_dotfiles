@@ -7,12 +7,13 @@ if &compatible
     set nocompatible               " Be iMproved
 endif
 
+" ADD required config here
+
 " dein
 call dein#add('wsdjeg/dein-ui.vim')
 call dein#add('haya14busa/dein-command.vim')
 
 " Generic plugins
-call dein#add('w0rp/ale') " lint everything
 call dein#add('Chiel92/vim-autoformat') " format everything
 call dein#add('Yggdroot/LeaderF', {'build': './install.sh'}) " search and stuff
 call dein#add('flazz/vim-colorschemes') " add more themes
@@ -22,8 +23,8 @@ call dein#add('Yggdroot/indentLine') " show indent
 call dein#add('vim-python/python-syntax', {'on_ft': 'python'})
 
 " Convenience
-call dein#add('tomtom/tcomment_vim')
 call dein#add('jiangmiao/auto-pairs')
+call dein#add('tomtom/tcomment_vim')
 call dein#add('tpope/vim-surround')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('tpope/vim-fugitive')
@@ -50,9 +51,11 @@ call dein#add('ncm2/float-preview.nvim') " preview in floating window
 " Golang
 call dein#add('fatih/vim-go', {'on_ft': 'go'})
 " LSP, for other languages
+call dein#add('w0rp/ale') " lint everything
 call dein#add('prabirshrestha/vim-lsp')
 call dein#add('mattn/vim-lsp-settings')
 call dein#add('lighttiger2505/deoplete-vim-lsp')
+call dein#add('rhysd/vim-lsp-ale') " bridge between ale and lsp
 
 " Markdown
 call dein#add('godlygeek/tabular', {'on_ft': 'markdown'})
@@ -69,9 +72,9 @@ filetype plugin indent on
 syntax enable
 
 " " If you want to install not installed plugins on startup.
-" if dein#check_install()
-"     call dein#install()
-" endif
+if dein#check_install()
+    call dein#install()
+endif
 
 "End dein Scripts-------------------------
 
@@ -256,7 +259,7 @@ nnoremap ^ <nop>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable syntax highlighting
+"" Enable syntax highlighting
 syntax enable
 syntax on
 autocmd BufEnter * :syntax sync fromstart " syntax highlighting breaks when paging up/down
@@ -388,13 +391,13 @@ let g:ale_go_golangci_lint_options = '-E unparam -E goconst -E gofmt'
 let g:ale_go_golangci_lint_package = 1
 
 let g:ale_linters = {
-            \   'javascript': ['eslint'],
-            \   'rust': ['rls'],
-            \   'python': ['pylint'],
-            \   'c': ['clangd'],
-            \   'go': ['gopls', 'golangci-lint', 'vet'],
-            \   'cpp': ['clangd'],
-            \   'sh': ['shellcheck'],
+            \   'javascript': ['vim-lsp'],
+            \   'rust': ['vim-lsp'],
+            \   'python': ['vim-lsp'],
+            \   'c': ['vim-lsp'],
+            \   'go': ['vim-lsp'],
+            \   'cpp': ['vim-lsp'],
+            \   'sh': ['vim-lsp', 'shellcheck'],
             \}
 
 let g:ale_fixers = {
@@ -425,7 +428,7 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> IndentLine
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:indentLine_enabled = 1
+let g:indentLine_enabled = 0
 let g:indentLine_char = '▏'
 " let g:indentLine_setColors = 0
 
@@ -507,6 +510,7 @@ call deoplete#custom#var('tabnine', {
             \ 'line_limit': 500,
             \ 'max_num_results': 10,
             \ })
+let g:neopairs#enable = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> neosnippets
@@ -527,9 +531,10 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
             \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
-if has('conceal')
-    set conceallevel=2 concealcursor=niv
-endif
+" if has('conceal')
+"     " set conceallevel=2 concealcursor=niv
+" endif
+let g:vim_json_syntax_conceal = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> vim-autoformat
@@ -576,14 +581,15 @@ let g:go_doc_popup_window = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> vim-lsp
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if executable('pyls')
-    " pip install python-language-server
-    au User lsp_setup call lsp#register_server({
-                \ 'name': 'pyls',
-                \ 'cmd': {server_info->['pyls']},
-                \ 'allowlist': ['python'],
-                \ })
-endif
+" if executable('pyls')
+"     " pip install python-language-server
+"     au User lsp_setup call lsp#register_server({
+"                 \ 'name': 'pyls',
+"                 \ 'cmd': {server_info->['pyls']},
+"                 \ 'allowlist': ['python'],
+"                 \ })
+" endif
+"
 
 if executable('gopls')
     " vim-go will take care of installation
@@ -623,10 +629,10 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-" diagnostics
-let g:lsp_diagnostics_enabled = 0 " disable diagnostics
-let g:lsp_diagnostics_float_cursor = 1
-let g:lsp_diagnostics_virtual_text_enabled = 0
-let g:lsp_diagnostics_highlights_enabled = 0
-let g:lsp_diagnostics_signs_error = {'text': '✗'}
-let g:lsp_diagnostics_signs_warning = {'text': '⚠'}
+" diagnostics: let ale-lsp handle these
+" let g:lsp_diagnostics_enabled = 1 " disable diagnostics
+" let g:lsp_diagnostics_float_cursor = 1
+" let g:lsp_diagnostics_virtual_text_enabled = 0
+" let g:lsp_diagnostics_highlights_enabled = 0
+" let g:lsp_diagnostics_signs_error = {'text': '✗'}
+" let g:lsp_diagnostics_signs_warning = {'text': '⚠'}
