@@ -7,6 +7,16 @@ if &compatible
     set nocompatible               " Be iMproved
 endif
 
+" Required:
+set runtimepath+=~/.dein/repos/github.com/Shougo/dein.vim
+
+" Required:
+call dein#begin('~/.dein')
+
+" Let dein manage dein
+" Required:
+call dein#add('~/.dein/repos/github.com/Shougo/dein.vim')
+
 " dein
 call dein#add('wsdjeg/dein-ui.vim')
 call dein#add('haya14busa/dein-command.vim')
