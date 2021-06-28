@@ -1,12 +1,12 @@
 """"""""""""""""""""""""""""""""""""""""""
-" ==>> jm33-ng's nvim config
+" ==>> jm33-ng's nvim config <<==
 """"""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""
-" python
+" ==>> python: in case checkHealth fails
 """"""""""""""""""""""""""""""""""""""""""
-" let g:python3_host_prog = '/home/ubuntu/anaconda3/bin/python3'
-" let g:python2_host_prog = '/usr/bin/python2'
+" let g:python3_host_prog = '/home/jm33/.pyenv/shims/python3'
+" let g:python_host_prog = '/home/jm33/.pyenv/shims/python2'
 
 "dein Scripts-----------------------------
 if &compatible
