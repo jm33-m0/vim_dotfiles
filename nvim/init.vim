@@ -407,12 +407,15 @@ let g:ale_go_golangci_lint_package = 1
 let g:ale_linters = {
             \   'javascript': ['vim-lsp'],
             \   'rust': ['vim-lsp'],
-            \   'python': ['vim-lsp'],
-            \   'c': ['vim-lsp'],
-            \   'go': ['vim-lsp'],
-            \   'cpp': ['vim-lsp'],
+            \   'python': ['vim-lsp', 'pylint'],
+            \   'c': ['vim-lsp', 'clangd'],
+            \   'go': ['vim-lsp', 'gopls'],
+            \   'cpp': ['vim-lsp', 'clangd'],
             \   'sh': ['vim-lsp', 'shellcheck'],
             \}
+
+" ALE-LSP
+let g:lsp_ale_diagnostics_severity = "warning"
 
 let g:ale_fixers = {
             \   'python': ['isort', 'add_blank_lines_for_python_control_statements'],
