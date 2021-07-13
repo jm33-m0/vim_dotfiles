@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# install neovim
-sudo apt update &&
-    sudo apt install neovim neovim-qt -y
+command -v 'nvim' || {
+    echo 'You need to install neovim first'
+    exit 1
+}
 
 # python binding
 python -m pip install neovim python-language-server pyright pylint yapf autopep8 --user
