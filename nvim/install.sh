@@ -37,7 +37,8 @@ command -v snap && {
 # install nodejs via apt if snap is unavailable
 (command -v snap && ! command -v node) && {
     echo -e "\n\nnodejs not found, trying to install from apt"
-    sudo apt install nodejs npm
+    sudo apt install nodejs npm yarnpkg
+    sudo ln -s /usr/bin/yarnpkg /usr/local/bin/yarn
 }
 
 # nodejs related packages
