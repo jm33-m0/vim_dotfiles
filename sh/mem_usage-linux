@@ -1,7 +1,0 @@
-#!/bin/bash
-
-free=$(free -m)
-used=$(echo "$free" | awk '/Mem/{printf($3)}')
-shared=$(echo "$free" | awk '/Mem/{printf($5)}')
-used_total=$((used + shared))
-echo "$used_total MB"
