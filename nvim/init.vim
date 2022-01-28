@@ -63,7 +63,8 @@ call dein#add('ncm2/float-preview.nvim') " preview in floating window
 " endif
 
 " Golang
-call dein#add('fatih/vim-go', {'on_ft': 'go'})
+" call dein#add('fatih/vim-go', {'on_ft': 'go'})
+
 " LSP, for other languages
 call dein#add('w0rp/ale') " lint everything
 call dein#add('prabirshrestha/vim-lsp')
@@ -77,8 +78,6 @@ call dein#add('mzlogin/vim-markdown-toc', {'on_ft': 'markdown'})
 call dein#add('ferrine/md-img-paste.vim', {'on_ft': 'markdown'})
 call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
                     \ 'build': 'sh -c "cd app && yarn install"' })
-
-
 
 " Required:
 call dein#end()
@@ -94,7 +93,6 @@ endif
 
 "End dein Scripts-------------------------
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> Comfortable editing
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -104,24 +102,6 @@ set autoread
 " Set updatetime, when cursor stay still for 'updatetime', CursorHold is
 " triggered
 set updatetime=300
-
-" Disable Ctrl-xxx messed-up keys
-noremap <ESC>[1;5A <NOP>
-noremap <ESC>[1;5B <NOP>
-noremap <ESC>[1;5C <NOP>
-noremap <ESC>[1;5D <NOP>
-noremap <ESC>[1;5H <NOP>
-noremap <ESC>[1;5F <NOP>
-noremap <ESC>[5;5~ <NOP>
-noremap <ESC>[6;5~ <NOP>
-noremap! <ESC>[1;5A <NOP>
-noremap! <ESC>[1;5B <NOP>
-noremap! <ESC>[1;5C <NOP>
-noremap! <ESC>[1;5D <NOP>
-noremap! <ESC>[1;5H <NOP>
-noremap! <ESC>[1;5F <NOP>
-noremap! <ESC>[5;5~ <NOP>
-noremap! <ESC>[6;5~ <NOP>
 
 "Dismiss the start screen
 set shortmess=atI
@@ -206,7 +186,6 @@ set hid
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
-
 " Ignore case when searching
 set ignorecase
 
@@ -271,7 +250,6 @@ nnoremap E $
 nnoremap $ <nop>
 nnoremap ^ <nop>
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -293,7 +271,6 @@ if &term =~# '256color' && ( &term =~# '^screen'  || &term =~# '^tmux'  )
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
 endif
-
 
 try
     " colorscheme mod8
