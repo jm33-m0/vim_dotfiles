@@ -63,7 +63,7 @@ call dein#add('ncm2/float-preview.nvim') " preview in floating window
 " endif
 
 " Golang
-" call dein#add('fatih/vim-go', {'on_ft': 'go'})
+call dein#add('fatih/vim-go', {'on_ft': 'go'})
 
 " LSP, for other languages
 call dein#add('w0rp/ale') " lint everything
@@ -578,11 +578,10 @@ let g:go_doc_popup_window = 1
 " let deoplete autocomplete golang
 " call deoplete#custom#option('omni_patterns', {'go': '[^. *\t]\.\w*'})
 
-" Disabled in favor of vim-lsp
-" " key bindings
-" nmap <leader>gr :GoReferrers<cr>
-" " nmap <leader>d :GoDoc<cr>
-" nmap <leader>rn :GoRename<cr>
+" key bindings
+nmap <leader>gr :GoReferrers<cr>
+nmap <leader>d :GoDoc<cr>
+nmap <leader>rn :GoRename<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> vim-lsp
@@ -616,7 +615,7 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> gr <plug>(lsp-references)
     nmap <buffer> gi <plug>(lsp-implementation)
     nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> rn <plug>(lsp-rename)
     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
