@@ -21,21 +21,29 @@ sh /tmp/installer.sh ~/.dein && rm -f /tmp/installer.sh
 command -v apt && {
     echo -e "\n\napt detected, trying to install dependencies"
     sudo apt install ripgrep fzf -y            # required
-    sudo apt install golang gopls              # golang
+    sudo apt install golang                    # golang
     sudo apt install clang clangd clang-format # c
     sudo apt install shellcheck                # bash
     sudo apt install snapd                     # snap
+}
+
+# install go 1.17.7
+command -v go && {
+    echo -e "\n\ninstalling go 1.17.7"
+    go get golang.org/dl/go1.17.7 &&
+        go1.17.7 download &&
+        mkdir ~/bin &&
+        ln "$(which go1.17.7)" ~/bin/go
 }
 
 command -v snap && {
     echo -e "\n\nsnap detected, trying to install more utilities"
     sudo snap install shfmt
     sudo snap install node --classic
-    sudo snap install lazygit
 }
 
 # install nodejs via apt if snap is unavailable
-(command -v snap && ! command -v node) && {
+command -v node || {
     echo -e "\n\nnodejs not found, trying to install from apt"
     sudo apt install nodejs npm yarnpkg
     sudo ln -s /usr/bin/yarnpkg /usr/local/bin/yarn
