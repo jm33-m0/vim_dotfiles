@@ -5,63 +5,9 @@ command -v 'nvim' || {
     exit 1
 }
 
-# python binding
-(command -v python3 && ! python3 -m pip list | grep pynvim) && {
-    python3 -m pip install neovim python-language-server pyright pylint yapf autopep8 --user
-}
-(command -v python2 && ! python2 -m pip list | grep pynvim) && {
-    python2 -m pip install neovim python-language-server pylint yapf autopep8 --user
-}
-
 # install dein.nvim
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh -o /tmp/installer.sh
 sh /tmp/installer.sh ~/.dein && rm -f /tmp/installer.sh
-
-# install dependencies
-command -v apt && {
-    echo -e "\n\napt detected, trying to install dependencies"
-    sudo apt install ripgrep fzf -y            # required
-    sudo apt install golang                    # golang
-    sudo apt install clang clangd clang-format # c
-    sudo apt install shellcheck                # bash
-    sudo apt install snapd                     # snap
-}
-
-# install go 1.17.7
-command -v go && {
-    echo -e "\n\ninstalling go 1.17.7"
-    go get golang.org/dl/go1.17.7 &&
-        go1.17.7 download &&
-        mkdir ~/bin &&
-        ln "$(which go1.17.7)" ~/bin/go
-}
-
-command -v snap && {
-    echo -e "\n\nsnap detected, trying to install more utilities"
-    sudo snap install shfmt
-    sudo snap install node --classic
-}
-
-# install nodejs via apt if snap is unavailable
-command -v node || {
-    echo -e "\n\nnodejs not found, trying to install from apt"
-    sudo apt install nodejs npm yarnpkg
-    sudo ln -s /usr/bin/yarnpkg /usr/local/bin/yarn
-}
-
-# nodejs related packages
-test_ro=/usr/local/bin/nvim-test
-(command -v npm && sudo touch "$test_ro") && {
-    echo -e "\n\nnodejs found, trying to install required modules"
-    sudo npm install -g js-beautify
-    sudo npm install -g yarn
-    [[ -f "$test_ro" ]] && sudo rm -f "$test_ro"
-}
-
-(command -v go && ! command -v shfmt) && {
-    echo -e "\n\ninstalling shfmt via go get"
-    go install mvdan.cc/sh/v3/cmd/shfmt@latest || echo "shfmt failed to install, figure it out yourself"
-}
 
 # install init.vim
 [[ -d ~/.config/nvim ]] || mkdir -p ~/.config/nvim
