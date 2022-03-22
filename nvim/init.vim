@@ -46,30 +46,22 @@ call dein#add('tpope/vim-vinegar')
 call dein#add('tpope/vim-repeat')
 
 " Autocomplete
-call dein#add('Shougo/deoplete.nvim')
-if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-endif
-let g:deoplete#enable_at_startup = 1
+call dein#add('prabirshrestha/asyncomplete.vim')
+call dein#add('prabirshrestha/asyncomplete-lsp.vim')
+call dein#add('prabirshrestha/asyncomplete-file.vim')
+call dein#add('prabirshrestha/asyncomplete-neosnippet.vim')
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('ncm2/float-preview.nvim') " preview in floating window
-" " tabnine
-" if has('win32') || has('win64')
-"     call dein#add('tbodt/deoplete-tabnine', { 'build': 'powershell.exe .\install.ps1' })
-" else
-"     call dein#add('tbodt/deoplete-tabnine', { 'build': './install.sh' })
-" endif
 
 " Golang
 call dein#add('fatih/vim-go', {'on_ft': 'go'})
 
 " LSP, for other languages
 call dein#add('w0rp/ale') " lint everything
-call dein#add('prabirshrestha/vim-lsp')
-call dein#add('mattn/vim-lsp-settings')
-call dein#add('lighttiger2505/deoplete-vim-lsp')
+call dein#add('andreypopp/asyncomplete-ale.vim') " with asyncomplete.vim
+call dein#add('prabirshrestha/vim-lsp') " VIM LSP framework
+call dein#add('mattn/vim-lsp-settings') " sets up vim-lsp automatically
 call dein#add('rhysd/vim-lsp-ale') " bridge between ale and lsp
 
 " Markdown
@@ -498,25 +490,33 @@ let g:Lf_StlColorscheme = 'powerline'
 let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ==>> deoplete
+" ==>>  asyncomplete.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:float_preview#docked = 0
-set completeopt-=preview
-call deoplete#custom#var('tabnine', {
-            \ 'line_limit': 500,
-            \ 'max_num_results': 10,
-            \ })
-let g:neopairs#enable = 1
+" Tab completion
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
-" Use TAB to trigger autocompl
-inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+" Force refresh completion
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+" For Vim 8 (<c-@> corresponds to <c-space>):
+" imap <c-@> <Plug>(asyncomplete_force_refresh)
+
+" Preview window
+" allow modifying the completeopt variable, or it will
+" be overridden all the time
+let g:asyncomplete_auto_completeopt = 0
+set completeopt=menuone,noinsert,noselect,preview
+" To auto close preview window when completion is done.
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" Complete file system path
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'allowlist': ['*'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> neosnippets
@@ -541,6 +541,13 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 "     " set conceallevel=2 concealcursor=niv
 " endif
 let g:vim_json_syntax_conceal = 0
+
+" sets up prabirshrestha/asyncomplete-neosnippet.vim
+call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
+    \ 'name': 'neosnippet',
+    \ 'allowlist': ['*'],
+    \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
+    \ }))
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> vim-autoformat
@@ -641,6 +648,14 @@ augroup END
 " let g:lsp_diagnostics_highlights_enabled = 0
 " let g:lsp_diagnostics_signs_error = {'text': '✗'}
 " let g:lsp_diagnostics_signs_warning = {'text': '⚠'}
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==>> andreypopp/asyncomplete-ale.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au User asyncomplete_setup call asyncomplete#ale#register_source({
+    \ 'name': 'reason',
+    \ 'linter': 'flow',
+    \ })
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> markdown-preview
