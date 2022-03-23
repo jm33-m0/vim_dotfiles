@@ -50,6 +50,12 @@ call dein#add('prabirshrestha/asyncomplete.vim')
 call dein#add('prabirshrestha/asyncomplete-lsp.vim')
 call dein#add('prabirshrestha/asyncomplete-file.vim')
 call dein#add('prabirshrestha/asyncomplete-neosnippet.vim')
+call dein#add('prabirshrestha/asyncomplete-tags.vim')
+call dein#add('prabirshrestha/asyncomplete-buffer.vim')
+" tmux complete
+call dein#add('prabirshrestha/async.vim')
+call dein#add('wellle/tmux-complete.vim')
+" snippet
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('ncm2/float-preview.nvim') " preview in floating window
@@ -518,6 +524,27 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
     \ 'completor': function('asyncomplete#sources#file#completor')
     \ }))
 
+" Complete from buffer
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'allowlist': ['*'],
+    \ 'blocklist': ['go'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ 'config': {
+    \    'max_buffer_size': 5000000,
+    \  },
+    \ }))
+
+" Complete from tags
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
+    \ 'name': 'tags',
+    \ 'allowlist': ['c'],
+    \ 'completor': function('asyncomplete#sources#tags#completor'),
+    \ 'config': {
+    \    'max_file_size': 50000000,
+    \  },
+    \ }))
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> neosnippets
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -656,6 +683,22 @@ au User asyncomplete_setup call asyncomplete#ale#register_source({
     \ 'name': 'reason',
     \ 'linter': 'flow',
     \ })
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==>> wellle/tmux-complete.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:tmuxcomplete#asyncomplete_source_options = {
+            \ 'name':      'tmuxcomplete',
+            \ 'whitelist': ['*'],
+            \ 'config': {
+            \     'splitmode':      'words',
+            \     'filter_prefix':   1,
+            \     'show_incomplete': 1,
+            \     'sort_candidates': 0,
+            \     'scrollback':      0,
+            \     'truncate':        0
+            \     }
+            \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> markdown-preview
