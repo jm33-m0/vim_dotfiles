@@ -508,13 +508,13 @@ imap <c-space> <Plug>(asyncomplete_force_refresh)
 " For Vim 8 (<c-@> corresponds to <c-space>):
 " imap <c-@> <Plug>(asyncomplete_force_refresh)
 
-" Preview window
-" allow modifying the completeopt variable, or it will
-" be overridden all the time
-let g:asyncomplete_auto_completeopt = 0
-set completeopt=menuone,noinsert,noselect,preview
-" To auto close preview window when completion is done.
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" " Preview window
+" " allow modifying the completeopt variable, or it will
+" " be overridden all the time
+" let g:asyncomplete_auto_completeopt = 0
+" set completeopt=menuone,noinsert,noselect,preview
+" " To auto close preview window when completion is done.
+" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Complete file system path
 au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
@@ -527,6 +527,7 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
 " Complete from buffer
 call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
     \ 'name': 'buffer',
+    \ 'priority': 9,
     \ 'allowlist': ['*'],
     \ 'blocklist': ['go'],
     \ 'completor': function('asyncomplete#sources#buffer#completor'),
@@ -538,6 +539,7 @@ call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options
 " Complete from tags
 au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
     \ 'name': 'tags',
+    \ 'priority': 8,
     \ 'allowlist': ['c'],
     \ 'completor': function('asyncomplete#sources#tags#completor'),
     \ 'config': {
@@ -570,11 +572,12 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 let g:vim_json_syntax_conceal = 0
 
 " sets up prabirshrestha/asyncomplete-neosnippet.vim
-call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
-    \ 'name': 'neosnippet',
-    \ 'allowlist': ['*'],
-    \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
-    \ }))
+" call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
+"     \ 'name': 'neosnippet',
+"     \ 'allowlist': ['*'],
+"     \ 'priority': 0,
+"     \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
+"     \ }))
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> vim-autoformat
