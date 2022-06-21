@@ -1,0 +1,11 @@
+#!/bin/bash
+
+[[ "$#" -eq 1 ]] || exit
+
+active_pid="$1"
+
+# args_array=("$(ps --ppid "$active_pid" -o args=)")
+args="$(ps --ppid "$active_pid" -o args=)"
+
+[[ "$args" == "ssh"* ]] && echo "$args" | awk '{print $2}'
+[[ "$args" == "nvim"* ]] && echo "$args" | awk '{print $2}'
