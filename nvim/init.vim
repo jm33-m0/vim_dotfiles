@@ -5,7 +5,7 @@
 """"""""""""""""""""""""""""""""""""""""""
 " ==>> python: in case checkHealth fails
 """"""""""""""""""""""""""""""""""""""""""
-" let g:python3_host_prog = '/home/jm33/.pyenv/shims/python3'
+let g:python3_host_prog = '~/.pyenv/shims/python3'
 " let g:python_host_prog = '/home/jm33/.pyenv/shims/python2'
 
 "dein Scripts-----------------------------
@@ -172,7 +172,7 @@ endif
 "Always show current position
 set ruler
 " set cursorcolumn
-set cursorline
+" set cursorline
 
 " Height of the command bar
 set cmdheight=2
