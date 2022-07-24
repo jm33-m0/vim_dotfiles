@@ -1,14 +1,14 @@
 # vim_dotfiles
-my (neo)vim config files
+My own Nvim (Neovim) config files
 
-## important
+## Important
 
-- please use [nerd-fonts](https://www.nerdfonts.com/font-downloads) if you want to see icons in nvim
-- **Read before using**, you need to be familiar with my keybindings
+- Use [nerd-fonts](https://www.nerdfonts.com/font-downloads) to see icons in Nvim
+- **MUST** be familiar with my keybindings
 
-## features
+## Features
 
-- golang, python, c, bash, markdown and more
+- Golang, Python, C, Bash, Markdown and more...
 - `./nvim/install.sh` script
 
 ![screenshot](img/screenshot.png)
