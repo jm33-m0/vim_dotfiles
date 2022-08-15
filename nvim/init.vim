@@ -52,6 +52,7 @@ call dein#add('prabirshrestha/asyncomplete-file.vim')
 call dein#add('prabirshrestha/asyncomplete-neosnippet.vim')
 call dein#add('prabirshrestha/asyncomplete-tags.vim')
 call dein#add('prabirshrestha/asyncomplete-buffer.vim')
+call dein#add('github/copilot.vim')
 " tmux complete
 call dein#add('prabirshrestha/async.vim')
 call dein#add('wellle/tmux-complete.vim')
@@ -61,7 +62,7 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('ncm2/float-preview.nvim') " preview in floating window
 
 " Golang
-call dein#add('fatih/vim-go', {'on_ft': 'go'})
+" call dein#add('fatih/vim-go', {'on_ft': 'go'})
 
 " LSP, for other languages
 call dein#add('w0rp/ale') " lint everything
@@ -587,40 +588,6 @@ let g:autoformat_autoindent = 0
 " :silent! execute !autopep8 --in-place --aggressive --aggressive %" | redraw!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ==>> vim-go
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:go_metalinter_command = 'golangci-lint'
-let g:go_rename_command = 'gopls'
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-let g:go_fmt_command = 'gopls'
-let g:go_doc_keywordprg_enabled = 0
-let g:go_gocode_autobuild = 1
-let g:go_gocode_unimported_packages = 1
-let g:go_go_code_completion_enabled = 0
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_methods = 1
-set autowrite
-" popup window for GoDoc
-let g:go_doc_popup_window = 1
-
-" let deoplete autocomplete golang
-" call deoplete#custom#option('omni_patterns', {'go': '[^. *\t]\.\w*'})
-
-" key bindings
-nmap <leader>gr :GoReferrers<cr>
-nmap <leader>d :GoDoc<cr>
-nmap <leader>rn :GoRename<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> vim-lsp
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " if executable('pyls')
@@ -633,14 +600,14 @@ nmap <leader>rn :GoRename<cr>
 " endif
 "
 
-if executable('gopls')
-    " vim-go will take care of installation
-    au User lsp_setup call lsp#register_server({
-                \ 'name': 'gopls',
-                \ 'cmd': {server_info->['gopls']},
-                \ 'allowlist': ['gopls'],
-                \ })
-endif
+" if executable('gopls')
+"     " vim-go will take care of installation
+"     au User lsp_setup call lsp#register_server({
+"                 \ 'name': 'gopls',
+"                 \ 'cmd': {server_info->['gopls']},
+"                 \ 'allowlist': ['gopls'],
+"                 \ })
+" endif
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
