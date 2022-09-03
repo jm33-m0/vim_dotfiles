@@ -5,7 +5,7 @@
 """"""""""""""""""""""""""""""""""""""""""
 " ==>> python: in case checkHealth fails
 """"""""""""""""""""""""""""""""""""""""""
-let g:python3_host_prog = '~/.pyenv/shims/python3'
+" let g:python3_host_prog = '~/.pyenv/shims/python3'
 " let g:python_host_prog = '/home/jm33/.pyenv/shims/python2'
 
 "dein Scripts-----------------------------
@@ -75,8 +75,8 @@ call dein#add('rhysd/vim-lsp-ale') " bridge between ale and lsp
 call dein#add('godlygeek/tabular', {'on_ft': 'markdown'})
 call dein#add('mzlogin/vim-markdown-toc', {'on_ft': 'markdown'})
 call dein#add('ferrine/md-img-paste.vim', {'on_ft': 'markdown'})
-call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
-                    \ 'build': 'sh -c "cd app && yarn install"' })
+" call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
+"                     \ 'build': 'sh -c "cd app && yarn install"' })
 
 " Required:
 call dein#end()
