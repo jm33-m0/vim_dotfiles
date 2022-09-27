@@ -1,8 +1,9 @@
-Invoke-WebRequest 'https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.ps1' -OutFile installer.ps1
+Invoke-WebRequest 'https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.ps1' -OutFile $env:TEMP\installer.ps1
 # Allow to run third-party script
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 # install dein package manager
-./installer.ps1 ~/.dein
+powershell.exe -File "$env:TEMP\installer.ps1" "$env:USERPROFILE\.dein"
+
 
 $nvimrc = "$env:LOCALAPPDATA\nvim\init.vim"
 $gnvimrc = "$env:LOCALAPPDATA\nvim\ginit.vim"

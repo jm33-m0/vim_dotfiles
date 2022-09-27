@@ -22,6 +22,10 @@ call dein#begin('~/.dein')
 " Let dein manage dein
 " Required:
 call dein#add('~/.dein/repos/github.com/Shougo/dein.vim')
+if !has('nvim')
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('roxma/vim-hug-neovim-rpc')
+endif
 
 " dein
 call dein#add('wsdjeg/dein-ui.vim')
@@ -139,6 +143,13 @@ command T %s/\s\+$//e
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " mitigate modeline RCE
 set nomodeline
+
+" Gvim settings
+if !has('nvim')
+    " set guioptions-=m  "menu bar
+    set guioptions-=T  "toolbar
+    set guioptions-=r  "scrollbar
+endif
 
 " kill buffer
 nmap <leader>k :bdelete<CR>

@@ -1,7 +1,7 @@
 " Set Editor Font
 if exists(':GuiFont')
     " Use GuiFont! to ignore font errors
-    GuiFont DroidSansMono NF:h12
+    GuiFont CaskaydiaCove NF:h12
 endif
 
 " Disable GUI Tabline
