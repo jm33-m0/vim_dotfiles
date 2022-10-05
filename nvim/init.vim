@@ -34,7 +34,7 @@ call dein#add('haya14busa/dein-command.vim')
 " Generic plugins
 call dein#add('Chiel92/vim-autoformat') " format everything
 if has("win32") || has("win64")
-    call dein#add('Yggdroot/LeaderF', {'build': './install.bat'}) " search and stuff
+    call dein#add('Yggdroot/LeaderF') " search and stuff
 else
     call dein#add('Yggdroot/LeaderF', {'build': './install.sh'}) " search and stuff
 endif
