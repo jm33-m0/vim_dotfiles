@@ -5,10 +5,10 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 powershell.exe -File $env:TEMP\installer.ps1 $env:USERPROFILE\.dein
 
 # install scoop package manager
-Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
-scoop.exe install ripgrep fzf
+# Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+scoop install ripgrep fzf
 
-$vimrc = "$env:USERPROFILE\nvim\.vimrc"
+$vimrc = "$env:USERPROFILE\.vimrc"
 Copy-Item -Path ..\nvim\init.vim -Destination $vimrc -Force
 Write-Host "Add required config to $vimrc"
 Write-Host "And :call dein#install()"
