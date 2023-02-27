@@ -22,10 +22,6 @@ if &runtimepath !~# '/dein.vim'
     endif
     execute 'set runtimepath^=' . substitute(
                 \ fnamemodify(s:dein_dir, ':p') , '[/\\]$', '', '')
-    " If you want to install not installed plugins on startup.
-    if dein#check_install()
-        call dein#install()
-    endif
 endif
 
 "dein Scripts-----------------------------
@@ -110,6 +106,11 @@ call dein#end()
 " Required:
 filetype plugin indent on
 syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+    call dein#install()
+endif
 
 "End dein Scripts-------------------------
 
