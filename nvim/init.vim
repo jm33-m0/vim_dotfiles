@@ -429,12 +429,6 @@ let g:lsp_ale_diagnostics_severity = "warning"
 let g:ale_fixers = {
             \   'python': ['isort', 'autopep8', 'autoimport', 'add_blank_lines_for_python_control_statements'],
             \   'go': ['goimports', 'remove_trailing_lines'],
-            \   'json': ['clang-format', 'jq'],
-            \   'html': ['html-beautify', 'tidy'],
-            \   'js': ['clang-format'],
-            \   'c': ['clang-format', 'clangtidy'],
-            \   'cpp': ['clang-format', 'clangtidy'],
-            \   'sh': ['shfmt'],
             \}
 
 " if linter got annoying, you can set the frq to normal
