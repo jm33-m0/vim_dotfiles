@@ -427,6 +427,7 @@ let g:lsp_ale_auto_enable_linter = 1
 let g:lsp_ale_auto_config_ale = 1
 let g:lsp_ale_diagnostics_severity = "warning"
 let g:ale_fixers = {
+            \   'jsonc': ['prettier'],
             \   'python': ['isort', 'autopep8', 'autoimport', 'add_blank_lines_for_python_control_statements'],
             \   'go': ['goimports', 'remove_trailing_lines'],
             \}
