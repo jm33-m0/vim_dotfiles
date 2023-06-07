@@ -1,12 +1,12 @@
 """"""""""""""""""""""""""""""""""""""""""
 " ==>> jm33-ng's nvim config <<==
 """"""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""""""""""""""
-" ==>> python: in case checkHealth fails
-""""""""""""""""""""""""""""""""""""""""""
 " let g:python3_host_prog = '~/.pyenv/shims/python3'
 " let g:python_host_prog = '/home/jm33/.pyenv/shims/python2'
+
+""""""""""""""""""""""""""""""""""""""""""
+" ==>> dein.vim
+""""""""""""""""""""""""""""""""""""""""""
 
 " install dein.vim if not found
 let $CACHE = expand('~/.cache')
@@ -26,25 +26,27 @@ if &runtimepath !~# '/dein.vim'
 endif
 
 "dein Scripts-----------------------------
-if &compatible
-    set nocompatible               " Be iMproved
-endif
+" Ward off unexpected things that your distro might have made, as
+" well as sanely reset options when re-sourcing .vimrc
+set nocompatible
 
-" Required:
-set runtimepath+=~/.dein/repos/github.com/Shougo/dein.vim
+" Set dein base path (required)
+let s:dein_base = '~/.cache/dein/'
 
-" Required:
-call dein#begin('~/.dein')
+" Set dein source path (required)
+let s:dein_src = '~/.cache/dein/repos/github.com/Shougo/dein.vim'
 
-" Let dein manage dein
-" Required:
-call dein#add('~/.dein/repos/github.com/Shougo/dein.vim')
-if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-endif
+" Set dein runtime path (required)
+execute 'set runtimepath+=' .. s:dein_src
 
-" dein
+" Call dein initialization (required)
+call dein#begin(s:dein_base)
+
+call dein#add(s:dein_src)
+
+" Your plugins go here:
+"call dein#add('Shougo/neosnippet.vim')
+"call dein#add('Shougo/neosnippet-snippets')
 call dein#add('wsdjeg/dein-ui.vim')
 call dein#add('haya14busa/dein-command.vim')
 
@@ -101,14 +103,20 @@ call dein#add('godlygeek/tabular', {'on_ft': 'markdown'})
 call dein#add('mzlogin/vim-markdown-toc', {'on_ft': 'markdown'})
 call dein#add('ferrine/md-img-paste.vim', {'on_ft': 'markdown'})
 
-" Required:
+" Finish dein initialization (required)
 call dein#end()
 
-" Required:
-filetype plugin indent on
-syntax enable
+" Attempt to determine the type of a file based on its name and possibly its
+" contents. Use this to allow intelligent auto-indenting for each filetype,
+" and for plugins that are filetype specific.
+filetype indent plugin on
 
-" If you want to install not installed plugins on startup.
+" Enable syntax highlighting
+if has('syntax')
+    syntax on
+endif
+
+" Uncomment if you want to install not-installed plugins on startup.
 if dein#check_install()
     call dein#install()
 endif
@@ -290,7 +298,6 @@ nnoremap ^ <nop>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Enable syntax highlighting
 syntax enable
-syntax on
 autocmd BufEnter * :syntax sync fromstart " syntax highlighting breaks when paging up/down
 
 " python-syntax
