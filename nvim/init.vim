@@ -419,6 +419,7 @@ let g:ale_go_golangci_lint_package = 1
 
 let g:ale_linters = {
             \   'json': ['jq'],
+            \   'shell': ['shellcheck'],
             \   'html': ['tidy'],
             \}
 
