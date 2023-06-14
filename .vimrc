@@ -51,11 +51,11 @@ call dein#add('wsdjeg/dein-ui.vim')
 call dein#add('haya14busa/dein-command.vim')
 
 " Generic plugins
-" call dein#add('Chiel92/vim-autoformat') " format everything
+call dein#add('Chiel92/vim-autoformat') " format everything
 if has("win32") || has("win64")
-    call dein#add('Yggdroot/LeaderF')
+    call dein#add('Yggdroot/LeaderF') " search and stuff
 else
-    call dein#add('Yggdroot/LeaderF', {'build': './install.sh'})
+    call dein#add('Yggdroot/LeaderF', {'build': './install.sh'}) " search and stuff
 endif
 call dein#add('flazz/vim-colorschemes') " add more themes
 call dein#add('vim-airline/vim-airline') " status line
@@ -436,18 +436,19 @@ let g:lsp_ale_auto_enable_linter = 1
 let g:lsp_ale_auto_config_ale = 1
 let g:lsp_ale_diagnostics_severity = "warning"
 let g:ale_fixers = {
-            \   'sh': ['shfmt'],
             \   'jsonc': ['prettier'],
             \   'json': ['prettier'],
-            \   'css': ['prettier'],
-            \   'js': ['prettier'],
             \   'html': ['prettier'],
+            \   'markdown': ['prettier'],
+            \   'js': ['prettier'],
+            \   'css': ['prettier'],
+            \   'yaml': ['prettier'],
             \   'java': ['clang-format'],
             \   'c': ['clang-format'],
             \   'cpp': ['clang-format'],
-            \   'cs': ['clang-format'],
             \   'python': ['isort', 'autopep8', 'autoimport', 'add_blank_lines_for_python_control_statements'],
-            \   'go': ['goimports', 'gofmt', 'remove_trailing_lines', 'trim_whitespace'],
+            \   'go': ['goimports', 'gofmt', 'remove_trailing_lines'],
+            \   'sh': ['shfmt', 'remove_trailing_lines', 'trim_whitespace'],
             \}
 
 " if linter got annoying, you can set the frq to normal
