@@ -439,6 +439,7 @@ let g:ale_fixers = {
             \   'jsonc': ['prettier'],
             \   'json': ['prettier'],
             \   'html': ['prettier'],
+            \   'htmldjango': ['html-beautify'],
             \   'markdown': ['prettier'],
             \   'js': ['prettier'],
             \   'css': ['prettier'],
