@@ -1,11 +1,21 @@
 #!/bin/bash
 
 [[ "$#" -eq 1 ]] || exit
-
+title=""
 active_pid="$1"
+cwd=$(readlink "/proc/$active_pid/cwd")
+ps --ppid "$active_pid" || {
+	echo -ne "$cwd"
+	exit
+}
 
-# args_array=("$(ps --ppid "$active_pid" -o args=)")
 args="$(ps --ppid "$active_pid" -o args=)"
+[[ "$args" == *"ssh"* ]] && title=$(echo "$args" | awk '{print $NF}')
+[[ "$args" == *"nvim"* ]] && title=$(echo "$args" | awk '{print $NF}')
+[[ "$args" == *"vim"* ]] && title=$(echo "$args" | awk '{print $NF}')
 
-[[ "$args" == "ssh"* ]] && echo "$args" | awk '{print $2}'
-[[ "$args" == "nvim"* ]] && echo "$args" | awk '{print $2}'
+user="$(ps --ppid "$active_pid" -o user=)"
+[[ "$args" == *"sudo"* ]] && title=$(echo "$args" | awk '{for(i=2;i<=NF;i++) printf $i" "; print ""}')
+[[ "$args" == *"bash"* ]] && title=$(echo "$args" | awk '{for(i=2;i<=NF;i++) printf $i" "; print ""}')
+[[ "$user" == "root" ]] && title="$title (root)"
+echo -ne "$title"
