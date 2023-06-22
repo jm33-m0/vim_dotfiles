@@ -1,0 +1,17 @@
+[user]
+    name = jm33-m0
+    email = jm33@jm33.me
+    signingKey = A914BB005F8A42F36C2997594876EC6D60BDB1DF
+[commit]
+    gpgSign = true
+[init]
+    defaultBranch = master
+[pull]
+    rebase = false
+[gpg]
+    program = gpg2
+[filter "lfs"]
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
