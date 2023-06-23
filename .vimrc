@@ -436,6 +436,7 @@ let g:lsp_ale_auto_enable_linter = 1
 let g:lsp_ale_auto_config_ale = 1
 let g:lsp_ale_diagnostics_severity = "warning"
 let g:ale_fixers = {
+            \   'lua': ['luafmt'],
             \   'jsonc': ['prettier'],
             \   'json': ['prettier'],
             \   'html': ['prettier'],
