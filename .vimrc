@@ -545,7 +545,7 @@ let g:Lf_CacheDirectory = expand('~/.vim/cache')
 let g:Lf_ShowRelativePath = 0
 let g:Lf_HideHelp = 1
 let g:Lf_StlColorscheme = 'powerline'
-let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
+let g:Lf_PreviewResult = {'Function':0, 'BufTag':0, 'File':0,}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>>  asyncomplete.vim
