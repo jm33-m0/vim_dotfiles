@@ -62,6 +62,7 @@ call dein#add('vim-airline/vim-airline') " status line
 call dein#add('vim-airline/vim-airline-themes') " themes for status line
 call dein#add('Yggdroot/indentLine') " show indent
 call dein#add('vim-python/python-syntax', {'on_ft': 'python'})
+call dein#add('preservim/vim-pencil', {'on_ft': ['text', 'markdown']})
 
 " Convenience
 call dein#add('jiangmiao/auto-pairs')
@@ -102,6 +103,8 @@ call dein#add('rhysd/vim-lsp-ale') " bridge between ale and lsp
 call dein#add('godlygeek/tabular', {'on_ft': 'markdown'})
 call dein#add('mzlogin/vim-markdown-toc', {'on_ft': 'markdown'})
 call dein#add('ferrine/md-img-paste.vim', {'on_ft': 'markdown'})
+call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
+            \ 'build': 'sh -c "cd app && yarn install"' })
 
 " Finish dein initialization (required)
 call dein#end()
@@ -173,12 +176,13 @@ set nomodeline
 
 " Gvim settings
 if !has('nvim')
-    " set guioptions-=m  "menu bar
-    set guioptions-=T  "toolbar
-    set guioptions-=r  "scrollbar
-
     if has("gui_running")
-        set guifont=CaskaydiaCove\ NF:h12
+        " set guioptions-=m  "menu bar
+        set guioptions-=T  "toolbar
+        set guioptions-=r  "scrollbar
+
+        set guifont=CaskaydiaCove\ Nerd\ Font\ 14,Fixed\ 14
+        set guifontwide=Noto\ Sans\ CJK\ 14
     endif
 endif
 
@@ -709,3 +713,15 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==>> vim-pencil
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" default is 'hard'"
+" let g:pencil#wrapModeDefault = 'soft'
+" let g:airline_section_x = '%{PencilMode()}'
+augroup pencil
+    autocmd!
+    autocmd FileType markdown,mkd call pencil#init()
+    autocmd FileType text         call pencil#init()
+augroup END
