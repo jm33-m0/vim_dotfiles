@@ -718,10 +718,12 @@ let g:go_highlight_generate_tags = 1
 " ==>> vim-pencil
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " default is 'hard'"
-let g:pencil#wrapModeDefault = 'soft'
-let g:airline_section_x = '%{PencilMode()}'
 augroup pencil
     autocmd!
     autocmd FileType markdown,mkd call pencil#init()
     autocmd FileType text         call pencil#init()
 augroup END
+if (&filetype == 'markdown' || &filetype == 'text')
+    let g:pencil#wrapModeDefault = 'soft'
+    let g:airline_section_x = '%{PencilMode()}'
+endif
