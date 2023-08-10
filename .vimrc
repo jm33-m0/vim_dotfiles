@@ -433,6 +433,7 @@ let g:ale_linters = {
             \   'json': ['jq'],
             \   'sh': ['shellcheck'],
             \   'html': ['tidy'],
+            \   'rust': ['analyzer'],
             \}
 
 " ALE-LSP
@@ -451,6 +452,7 @@ let g:ale_fixers = {
             \   'yaml': ['prettier'],
             \   'java': ['clang-format'],
             \   'c': ['clang-format'],
+            \   'rust': ['rustfmt'],
             \   'cpp': ['clang-format'],
             \   'python': ['isort', 'autopep8', 'autoimport', 'add_blank_lines_for_python_control_statements'],
             \   'go': ['goimports', 'gofmt', 'remove_trailing_lines'],
