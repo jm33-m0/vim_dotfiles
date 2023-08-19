@@ -1,6 +1,12 @@
 """"""""""""""""""""""""""""""""""""""""""
 " ==>> jm33-ng's nvim config <<==
 """"""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""
+" ==>> python interpreter
+""""""""""""""""""""""""""""""""""""""""""
+
+" Usually you can leave this to default
 " let g:python3_host_prog = '~/.pyenv/shims/python3'
 " let g:python_host_prog = '/home/jm33/.pyenv/shims/python2'
 
@@ -8,7 +14,8 @@
 " ==>> dein.vim
 """"""""""""""""""""""""""""""""""""""""""
 
-" install dein.vim if not found
+"dein installation------------------------------
+" install dein.vim if not found, unavailable for Windows
 let $CACHE = expand('~/.cache')
 if !isdirectory($CACHE)
     call mkdir($CACHE, 'p')
@@ -24,6 +31,7 @@ if &runtimepath !~# '/dein.vim'
     execute 'set runtimepath^=' .. substitute(
                 \ fnamemodify(s:dein_dir, ':p') , '[/\\]$', '', '')
 endif
+"dein installation ends-------------------------
 
 "dein Scripts-----------------------------
 " Ward off unexpected things that your distro might have made, as
@@ -45,8 +53,6 @@ call dein#begin(s:dein_base)
 call dein#add(s:dein_src)
 
 " Your plugins go here:
-"call dein#add('Shougo/neosnippet.vim')
-"call dein#add('Shougo/neosnippet-snippets')
 call dein#add('wsdjeg/dein-ui.vim')
 call dein#add('haya14busa/dein-command.vim')
 
@@ -186,8 +192,6 @@ if !has('nvim')
     endif
 endif
 
-
-
 " kill buffer
 nmap <leader>k :bdelete<CR>
 " Switch to next buffer
@@ -321,7 +325,7 @@ endif
 try
     " colorscheme mod8
     colorscheme molokai_dark
-    " colorscheme molokai
+" colorscheme molokai
 catch
     colorscheme default
 endtry
@@ -630,16 +634,19 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 let g:vim_json_syntax_conceal = 0
 
 " sets up prabirshrestha/asyncomplete-neosnippet.vim
-" call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
-"     \ 'name': 'neosnippet',
-"     \ 'allowlist': ['*'],
-"     \ 'priority': 0,
-"     \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
-"     \ }))
+if has('nvim')
+    call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
+                \ 'name': 'neosnippet',
+                \ 'allowlist': ['*'],
+                \ 'priority': 0,
+                \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
+                \ }))
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==>> vim-autoformat
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" this functionality is handled by ALE fixers
 " au BufWrite * :silent Autoformat
 " let g:autoformat_autoindent = 0
 " :silent! execute !autopep8 --in-place --aggressive --aggressive %" | redraw!
