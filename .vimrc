@@ -158,8 +158,12 @@ if !has('nvim')
         " set guioptions-=m  "menu bar
         set guioptions-=T  "toolbar
         set guioptions-=r  "scrollbar
-        set guifont=CaskaydiaCove\ Nerd\ Font\ 14,Fixed\ 14
-        set guifontwide=Noto\ Sans\ CJK\ 14
+        if has('linux')
+            set guifont=CaskaydiaCove\ Nerd\ Font\ 12,Fixed\ 12
+            set guifontwide=Noto\ Sans\ CJK\ 12
+        else
+            set guifont=FiraMono_Nerd_Font:h12
+        endif
     endif
 endif
 " kill buffer
