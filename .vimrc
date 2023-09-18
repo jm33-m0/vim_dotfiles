@@ -385,7 +385,7 @@ let g:ale_fixers = {
             \   'c': ['clang-format'],
             \   'rust': ['rustfmt'],
             \   'cpp': ['clang-format'],
-            \   'python': ['isort', 'autopep8', 'autoimport', 'add_blank_lines_for_python_control_statements'],
+            \   'python': ['black', 'isort', 'autoimport', 'add_blank_lines_for_python_control_statements'],
             \   'go': ['goimports', 'gofmt', 'remove_trailing_lines'],
             \   'sh': ['shfmt', 'remove_trailing_lines', 'trim_whitespace'],
             \}
