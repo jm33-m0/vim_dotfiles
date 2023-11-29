@@ -165,6 +165,9 @@ if !has('nvim')
             set guifont=FiraMono_Nerd_Font:h12
         endif
     endif
+else
+    set guifont=CaskaydiaCove\ Nerd\ Font:h12
+    set guifontwide=Noto\ Sans\ CJK\ 12
 endif
 " kill buffer
 nmap <leader>k :bdelete<CR>
@@ -624,9 +627,4 @@ let g:go_highlight_generate_tags = 1
 augroup pencil
     autocmd!
     autocmd FileType markdown,mkd call pencil#init()
-    autocmd FileType text         call pencil#init()
 augroup END
-if (&filetype == 'markdown' || &filetype == 'text')
-    let g:pencil#wrapModeDefault = 'soft'
-    let g:airline_section_x = '%{PencilMode()}'
-endif
