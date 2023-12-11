@@ -77,8 +77,10 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # enable syntax-highlighting
-if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+syntax_highlighting_plugin=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -f $syntax_highlighting_plugin ]] || syntax_highlighting_plugin=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f $syntax_highlighting_plugin ]; then
+    . $syntax_highlighting_plugin
     ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
     ZSH_HIGHLIGHT_STYLES[default]=none
     ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red,bold
@@ -150,41 +152,13 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # enable auto-suggestions based on the history
-if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+auto_suggestion_plugin=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -f $auto_suggestion_plugin ]] || auto_suggestion_plugin=/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -f $auto_suggestion_plugin ]; then
+    . $auto_suggestion_plugin
     # change suggestion color
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
 fi
-
-export VISUAL=vim
-
-# User specific environment
-PATH="/snap/bin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/games"
-if ! [[ "$PATH" =~ $HOME/.local/bin:$HOME/bin: ]]; then
-    PATH="$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$HOME/quickemu:$PATH"
-fi
-export PATH
-
-# npm install without root
-# ------------------------
-export NPM_PACKAGES="${HOME}/.npm-packages"
-# in ~/.npmrc
-# prefix=${HOME}/.npm-packages
-export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
-export PATH="$PATH:$NPM_PACKAGES/bin"
-# Unset manpath so we can inherit from /etc/manpath via the `manpath`
-# command
-unset MANPATH # delete if you already modified MANPATH elsewhere in your config
-MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
-export MANPATH
-
-# ENV
-# ---
-export EDITOR=vim
-export SUDO_EDITOR=vim
-export GOPATH="$HOME/go"
-export PATH="$PATH:$GOPATH/bin"
-export SDL_VIDEODRIVER=wayland
 
 # power
 power() {
@@ -199,6 +173,9 @@ power() {
 
 # aliases
 # -------
+if command -v nvim>/dev/null; then
+    alias vim=nvim
+fi
 alias ipython='python -m IPython'
 alias q='exit'
 alias ip='ip -color=auto'
@@ -214,23 +191,6 @@ alias off='power poweroff'
 source "$HOME/zsh/completion.zsh"
 source "$HOME/zsh/key-bindings.zsh"
 
-# GPG
-# ---
-GPG_TTY="$(tty)"
-export GPG_TTY
-
 # starship
 # --------
 eval "$(starship init zsh)"
-
-# vagrant
-# -------
-# export VAGRANT_DEFAULT_PROVIDER=vmware_desktop
-# export VAGRANT_HOME=/media/jm33/VM/Vagrant
-
-# pyenv
-# -----
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH" # if `pyenv` is not already on PATH
-# eval "$(pyenv init --path)"
-# eval "$(pyenv init -)"
