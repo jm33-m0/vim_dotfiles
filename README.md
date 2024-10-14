@@ -6,9 +6,6 @@ My own Nvim (Neovim) config files
 - Use [nerd-fonts](https://www.nerdfonts.com/font-downloads) to see icons in Nvim
 - **MUST** be familiar with my keybindings
 
-## Features
+## Screenshot
 
-- Golang, Python, C, Bash, Markdown and more...
-- `./nvim/install.sh` script
-
-![screenshot](img/screenshot.png)
+![screenshot](./img/screenshot.png)
