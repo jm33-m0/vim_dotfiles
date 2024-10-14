@@ -3,6 +3,8 @@
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
+source ~/.zprofile
+
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
 
@@ -165,8 +167,15 @@ power() {
     echo "Do you wish to $1?"
     select yn in "Yes" "No"; do
         case $yn in
-        Yes) systemctl "$1" ;;
-        No) exit ;;
+            Yes)
+                [[ -n "$TMUX" ]] && tmux kill-server
+                systemctl "$1"
+
+                ;;
+            No)
+                exit
+
+                ;;
         esac
     done
 }
@@ -193,4 +202,6 @@ source "$HOME/zsh/key-bindings.zsh"
 
 # starship
 # --------
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
+precmd() { print -rP "" }
+PROMPT="%B%F{red}%n%f%b%B@%b%F{14}%M%f in %F{green}%~%f%B $ %b"
