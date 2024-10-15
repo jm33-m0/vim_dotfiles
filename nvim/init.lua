@@ -423,6 +423,10 @@ require("lazy").setup({
 	checker = { enabled = true },
 })
 
+-- GitHub Copilot keybindings
+vim.g.copilot_no_tab_map = true -- Disable Copilot's default <Tab> mapping
+vim.api.nvim_set_keymap("i", "<C-Space>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+
 local capabilities = require("cmp_nvim_lsp").default_capabilities() --nvim-cmp
 
 local on_attach = function(client, bufnr)
