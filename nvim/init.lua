@@ -338,6 +338,34 @@ require("lazy").setup({
 			"preservim/tagbar",
 		},
 
+		-- Telescope: fzf and ripgrep
+		{
+			"nvim-telescope/telescope.nvim",
+			dependencies = { "nvim-lua/plenary.nvim" },
+			config = function()
+				require("telescope").setup({
+					defaults = {
+						file_ignore_patterns = { ".git/", "node_modules/", "vendor/" },
+					},
+				})
+				local builtin = require("telescope.builtin")
+				vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+				vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
+				vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+				vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+			end,
+		},
+
+		-- Tabline
+		{
+			"akinsho/bufferline.nvim",
+			version = "*",
+			dependencies = "nvim-tree/nvim-web-devicons",
+			config = function()
+				require("bufferline").setup({})
+			end,
+		},
+
 		-- file explorer
 		{
 			"nvim-tree/nvim-tree.lua",
@@ -459,6 +487,28 @@ local on_attach = function(client, bufnr)
 		buffer = bufnr,
 		callback = function()
 			vim.lsp.buf.format({ async = false })
+		end,
+	})
+
+	-- Auto organize imports on save for Go
+	vim.api.nvim_create_autocmd("BufWritePre", {
+		buffer = bufnr,
+		callback = function()
+			local params = vim.lsp.util.make_range_params() -- Get the buffer range
+			params.context = { only = { "source.organizeImports" } } -- Limit to organize imports
+
+			-- Request code actions for organizing imports
+			local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 1000)
+
+			for _, res in pairs(result or {}) do
+				for _, r in pairs(res.result or {}) do
+					if r.edit then
+						vim.lsp.util.apply_workspace_edit(r.edit, "utf-16")
+					else
+						vim.lsp.buf.execute_command(r.command)
+					end
+				end
+			end
 		end,
 	})
 end
