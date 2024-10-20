@@ -205,7 +205,7 @@ require("lazy").setup({
 		},
 
 		-- Git
-		{ "tpope/vim-fugitive", lazy = true },
+		{ "tpope/vim-fugitive" },
 
 		-- Auto complete pairs
 		{
@@ -219,11 +219,17 @@ require("lazy").setup({
 		-- markdown table formatter
 		{ "dhruvasagar/vim-table-mode", ft = "markdown" },
 
+		-- markdown TOC
+		{ "mzlogin/vim-markdown-toc", ft = "markdown" },
+
 		-- Toggle comments
 		{ "tomtom/tcomment_vim", lazy = true },
 
 		-- GitHub Copilot
-		{ "github/copilot.vim", lazy = true },
+		{
+			"github/copilot.vim",
+			event = "InsertEnter",
+		},
 
 		-- I have a separate config.mappings file where I require which-key.
 		-- With lazy the plugin will be automatically loaded when it is required somewhere
@@ -278,7 +284,6 @@ require("lazy").setup({
 		{
 			"stevearc/conform.nvim",
 			opts = {},
-			lazy = true,
 			config = function()
 				require("conform").setup({
 					formatters_by_ft = {
@@ -342,16 +347,12 @@ require("lazy").setup({
 		},
 
 		-- Tag bar
-		{
-			"preservim/tagbar",
-			lazy = true,
-		},
+		{ "preservim/tagbar" },
 
 		-- Telescope: fzf and ripgrep
 		{
 			"nvim-telescope/telescope.nvim",
 			dependencies = { "nvim-lua/plenary.nvim" },
-			lazy = true,
 			config = function()
 				require("telescope").setup({
 					defaults = {
@@ -501,7 +502,7 @@ local on_attach = function(client, bufnr)
 		end,
 	})
 
-	-- Auto organize imports on save for Go
+	-- Auto organize imports on save
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		buffer = bufnr,
 		callback = function()
