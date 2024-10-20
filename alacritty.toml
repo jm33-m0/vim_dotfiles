@@ -1,0 +1,36 @@
+[colors.primary]
+background = "0x1e1e1e"
+foreground = "0xc5c8c6"
+
+[font]
+size = 15.0
+
+[font.bold]
+family = "Cascadia Code NF"
+style = "Bold"
+
+[font.italic]
+family = "Cascadia Code NF"
+style = "Italic"
+
+[font.normal]
+family = "Cascadia Code NF"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Control|Shift"
+
+[shell]
+# program = "/usr/bin/tmux"
+program = "/usr/bin/zsh"
+# args = ["--login"]
+
+[window]
+decorations = "full"
+opacity = 1.0
+
+[window.dimensions]
+columns = 120
+lines = 33
