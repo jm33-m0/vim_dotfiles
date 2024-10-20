@@ -194,6 +194,7 @@ require("lazy").setup({
 			end,
 		},
 
+		-- Airline
 		{
 			"vim-airline/vim-airline",
 			lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -202,6 +203,9 @@ require("lazy").setup({
 				"vim-airline/vim-airline-themes",
 			},
 		},
+
+		-- Git
+		{ "tpope/vim-fugitive", lazy = true },
 
 		-- Auto complete pairs
 		{
@@ -212,11 +216,14 @@ require("lazy").setup({
 			-- this is equivalent to setup({}) function
 		},
 
+		-- markdown table formatter
+		{ "dhruvasagar/vim-table-mode", ft = "markdown" },
+
 		-- Toggle comments
-		{ "tomtom/tcomment_vim" },
+		{ "tomtom/tcomment_vim", lazy = true },
 
 		-- GitHub Copilot
-		{ "github/copilot.vim" },
+		{ "github/copilot.vim", lazy = true },
 
 		-- I have a separate config.mappings file where I require which-key.
 		-- With lazy the plugin will be automatically loaded when it is required somewhere
@@ -271,6 +278,7 @@ require("lazy").setup({
 		{
 			"stevearc/conform.nvim",
 			opts = {},
+			lazy = true,
 			config = function()
 				require("conform").setup({
 					formatters_by_ft = {
@@ -336,12 +344,14 @@ require("lazy").setup({
 		-- Tag bar
 		{
 			"preservim/tagbar",
+			lazy = true,
 		},
 
 		-- Telescope: fzf and ripgrep
 		{
 			"nvim-telescope/telescope.nvim",
 			dependencies = { "nvim-lua/plenary.nvim" },
+			lazy = true,
 			config = function()
 				require("telescope").setup({
 					defaults = {
@@ -385,6 +395,7 @@ require("lazy").setup({
 		{
 			"hrsh7th/nvim-cmp",
 			event = "InsertEnter",
+			lazy = true,
 			dependencies = {
 				"hrsh7th/cmp-nvim-lsp",
 				"hrsh7th/cmp-buffer",
