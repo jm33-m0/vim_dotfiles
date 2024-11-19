@@ -3,7 +3,7 @@ background = "0x1e1e1e"
 foreground = "0xc5c8c6"
 
 [font]
-size = 15.0
+size = 12.0
 
 [font.bold]
 family = "Cascadia Code NF"
@@ -22,9 +22,8 @@ action = "Paste"
 key = "V"
 mods = "Control|Shift"
 
-[shell]
+# [shell]
 # program = "/usr/bin/tmux"
-program = "/usr/bin/zsh"
 # args = ["--login"]
 
 [window]
