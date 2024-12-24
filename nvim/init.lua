@@ -291,6 +291,8 @@ require("lazy").setup({
 						bash = { "shfmt" },
 						sh = { "shfmt" },
 						xml = { "xmllint" },
+						json = { "prettier" },
+						html = { "prettier" },
 					},
 					format_on_save = {
 						-- These options will be passed to conform.format()
@@ -313,6 +315,7 @@ require("lazy").setup({
 					highlight = {
 						enable = true,
 						ensure_installed = {
+							"kconfig", -- This is installed by Snap, we need to override it
 							"python",
 							"go",
 							"gomod",
@@ -328,9 +331,6 @@ require("lazy").setup({
 							"lua",
 							"vim",
 							"vimdoc",
-							"query",
-							"elixir",
-							"heex",
 							"json",
 							"javascript",
 							"html",
@@ -461,7 +461,7 @@ require("lazy").setup({
 	-- colorscheme that will be used when installing plugins.
 	install = { colorscheme = { "habamax" } },
 	-- automatically check for plugin updates
-	checker = { enabled = true },
+	checker = { enabled = false },
 })
 
 -- GitHub Copilot keybindings
