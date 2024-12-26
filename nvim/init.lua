@@ -365,6 +365,7 @@ require("lazy").setup({
 				vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
 				vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 				vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+				vim.keymap.set("n", "<leader>ft", builtin.treesitter, { desc = "Telescope treesitter symbols" })
 			end,
 		},
 
@@ -427,7 +428,7 @@ require("lazy").setup({
 					},
 					mapping = {
 						["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item.
-						["<Tab>"] = cmp.mapping(function(fallback)
+						["<Down>"] = cmp.mapping(function(fallback)
 							if cmp.visible() then
 								cmp.select_next_item()
 							elseif vim.fn == 1 then
@@ -438,7 +439,25 @@ require("lazy").setup({
 								fallback() -- Fallback to Copilot or other mappings
 							end
 						end, { "i", "s" }),
-						["<S-Tab>"] = cmp.mapping(function()
+						["<C-N>"] = cmp.mapping(function(fallback)
+							if cmp.visible() then
+								cmp.select_next_item()
+							elseif vim.fn == 1 then
+								feedkey("<Plug>(vsnip-expand-or-jump)", "")
+							elseif has_words_before() then
+								cmp.complete()
+							else
+								fallback() -- Fallback to Copilot or other mappings
+							end
+						end, { "i", "s" }),
+						["<Up>"] = cmp.mapping(function()
+							if cmp.visible() then
+								cmp.select_prev_item()
+							elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+								feedkey("<Plug>(vsnip-jump-prev)", "")
+							end
+						end, { "i", "s" }),
+						["<C-P>"] = cmp.mapping(function()
 							if cmp.visible() then
 								cmp.select_prev_item()
 							elseif vim.fn["vsnip#jumpable"](-1) == 1 then
@@ -466,7 +485,7 @@ require("lazy").setup({
 
 -- GitHub Copilot keybindings
 vim.g.copilot_no_tab_map = true -- Disable Copilot's default <Tab> mapping
-vim.api.nvim_set_keymap("i", "<C-Space>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.api.nvim_set_keymap("i", "<Tab>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities() --nvim-cmp
 
