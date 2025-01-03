@@ -503,7 +503,7 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts) -- Go to declaration
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts) -- Show hover information
 	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts) -- Go to implementation
-	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts) -- Rename symbol
+	vim.keymap.set("n", "rn", vim.lsp.buf.rename, bufopts) -- Rename symbol
 	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts) -- Show code actions
 	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts) -- Show all references
 	vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, bufopts) -- Search workspace symbols
@@ -514,30 +514,30 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, bufopts) -- Go to type definition
 	vim.keymap.set("n", "<leader>f", ":TagbarToggle<CR>") -- Tagbar
 
-	-- Auto format on save
+	-- Auto organize imports on save for specific file types
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		buffer = bufnr,
 		callback = function()
-			vim.lsp.buf.format({ async = false })
-		end,
-	})
+			-- Get the current file type
+			local filetype = vim.bo.filetype
+			-- Define the allowed file types
+			local allowed_filetypes = { c = true, cpp = true, go = true, python = true }
 
-	-- Auto organize imports on save
-	vim.api.nvim_create_autocmd("BufWritePre", {
-		buffer = bufnr,
-		callback = function()
-			local params = vim.lsp.util.make_range_params() -- Get the buffer range
-			params.context = { only = { "source.organizeImports" } } -- Limit to organize imports
+			-- Check if the current file type is in the allowed list
+			if allowed_filetypes[filetype] then
+				local params = vim.lsp.util.make_range_params() -- Get the buffer range
+				params.context = { only = { "source.organizeImports" } } -- Limit to organize imports
 
-			-- Request code actions for organizing imports
-			local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 1000)
+				-- Request code actions for organizing imports
+				local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 1000)
 
-			for _, res in pairs(result or {}) do
-				for _, r in pairs(res.result or {}) do
-					if r.edit then
-						vim.lsp.util.apply_workspace_edit(r.edit, "utf-16")
-					else
-						vim.lsp.buf.execute_command(r.command)
+				for _, res in pairs(result or {}) do
+					for _, r in pairs(res.result or {}) do
+						if r.edit then
+							vim.lsp.util.apply_workspace_edit(r.edit, "utf-16")
+						else
+							vim.lsp.buf.execute_command(r.command)
+						end
 					end
 				end
 			end
