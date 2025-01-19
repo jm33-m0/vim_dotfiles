@@ -11,3 +11,6 @@ vim.g.lazyvim_prettier_needs_config = false
 vim.g.lazyvim_python_lsp = "pyright"
 -- Set to "ruff_lsp" to use the old LSP implementation version.
 vim.g.lazyvim_python_ruff = "ruff"
+
+-- Cursor style
+vim.opt.guicursor = "n-v-c:block-Cursor/lCursor-blinkwait175-blinkon175-blinkoff175"
