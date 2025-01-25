@@ -50,4 +50,7 @@ require("lazy").setup({
       },
     },
   },
+  ---@type number? limit the maximum amount of concurrent tasks
+  -- concurrency = jit.os:find("Windows") and (vim.uv.available_parallelism() * 2) or nil,
+  concurrency = 10,
 })
