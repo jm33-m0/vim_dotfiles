@@ -99,4 +99,25 @@ return {
       return opts
     end,
   },
+
+  -- Markdown LSP for better documentation
+  {
+    "neovim/nvim-lspconfig",
+    opts = function(_, opts)
+      opts.servers.markdownls = opts.servers.markdownls or {}
+      opts.servers.markdownls.settings = opts.servers.markdownls.settings or {}
+      opts.servers.markdownls.settings.markdown = {
+        format = {
+          enable = true,
+        },
+        completion = {
+          enable = true,
+        },
+        toc = {
+          enable = true,
+        },
+      }
+      return opts
+    end,
+  },
 }
