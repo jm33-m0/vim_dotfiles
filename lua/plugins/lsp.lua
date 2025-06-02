@@ -85,6 +85,18 @@ return {
 
       opts.servers.yamlls.settings = yamlls_settings
 
+      -- Markdown LSP configuration
+      opts.servers.marksman = opts.servers.marksman or {}
+      opts.servers.marksman.settings = {
+        markdown = {
+          code_action = {
+            toc = {
+              enable = true,
+            },
+          },
+        },
+      }
+
       return opts
     end,
   },
@@ -96,27 +108,6 @@ return {
       opts.highlight = opts.highlight or {}
       opts.highlight.additional_vim_regex_highlighting = opts.highlight.additional_vim_regex_highlighting or {}
       table.insert(opts.highlight.additional_vim_regex_highlighting, "yaml")
-      return opts
-    end,
-  },
-
-  -- Markdown LSP for better documentation
-  {
-    "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      opts.servers.markdownls = opts.servers.markdownls or {}
-      opts.servers.markdownls.settings = opts.servers.markdownls.settings or {}
-      opts.servers.markdownls.settings.markdown = {
-        format = {
-          enable = true,
-        },
-        completion = {
-          enable = true,
-        },
-        toc = {
-          enable = true,
-        },
-      }
       return opts
     end,
   },
