@@ -14,3 +14,6 @@ vim.g.lazyvim_python_ruff = "ruff"
 
 -- Cursor style
 vim.opt.guicursor = "n-v-c:block-Cursor/lCursor-blinkwait175-blinkon175-blinkoff175"
+
+-- Word wrap
+vim.opt.wrap = true
