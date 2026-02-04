@@ -97,6 +97,18 @@ return {
         },
       }
 
+      -- GOPLS configuration
+      opts.servers.gopls = opts.servers.gopls or {}
+      opts.servers.gopls.settings = {
+        gopls = {
+          analyses = {
+            ST1003 = false,
+            ST1000 = false,
+            errcheck = false,
+          },
+        },
+      }
+
       return opts
     end,
   },
