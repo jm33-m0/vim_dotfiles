@@ -1,6 +1,5 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.ai.copilot",
     "lazyvim.plugins.extras.coding.luasnip",
     "lazyvim.plugins.extras.coding.mini-surround",
     "lazyvim.plugins.extras.coding.nvim-cmp",
@@ -13,7 +12,6 @@
     "lazyvim.plugins.extras.editor.outline",
     "lazyvim.plugins.extras.editor.refactoring",
     "lazyvim.plugins.extras.editor.telescope",
-    "lazyvim.plugins.extras.formatting.biome",
     "lazyvim.plugins.extras.formatting.black",
     "lazyvim.plugins.extras.formatting.prettier",
     "lazyvim.plugins.extras.lang.clangd",
@@ -29,6 +27,7 @@
     "lazyvim.plugins.extras.lang.sql",
     "lazyvim.plugins.extras.lang.tex",
     "lazyvim.plugins.extras.lang.toml",
+    "lazyvim.plugins.extras.lang.typescript.biome",
     "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.ui.mini-indentscope",
     "lazyvim.plugins.extras.ui.smear-cursor",

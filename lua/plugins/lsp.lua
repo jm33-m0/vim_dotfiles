@@ -106,6 +106,10 @@ return {
             ST1000 = false,
             errcheck = false,
           },
+          hints = {
+            parameterNames = true, -- Shows names in calls
+          },
+          semanticTokens = true, -- Ensure this is on
         },
       }
 
